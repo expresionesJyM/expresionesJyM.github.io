@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Catálogos – Expresiones J&M 🌹</title>
-  <meta name="description" content="Explora nuestros catálogos de ramos, ramos con peluche y peluches."/>
+  <title>Materiales – Expresiones J&M 🌹</title>
+  <meta name="description" content="Catálogos de materiales: insumos florales y papeles coreanos."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
@@ -120,7 +120,13 @@
       display: block;
     }
 
+    /* Placeholder cuando no hay imagen */
     .card-img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 3.4rem;
       opacity: .65;
       user-select: none;
@@ -195,46 +201,41 @@
     <img class="logo-img" src="../logo2.png" alt="Expresiones J&M"/>
     <h1>Expresiones <em>J&amp;M</em></h1>
     <p>Rosas eternas hechas con amor &middot; Perú</p>
-    <span class="badge">Catálogos</span>
+    <span class="badge">Materiales</span>
   </header>
 
   <div class="divider"></div>
 
   <main>
-    <p class="section-label">Elige tu favorito</p>
+    <p class="section-label">Elige tu catálogo</p>
 
-    <!-- ── CATÁLOGO 1: RAMOS ── imagen a la IZQUIERDA -->
-    <a href="https://canva.link/swrdghigz5zs8mt" target="_blank" class="catalog-card img-left">
+    <!-- ── CATÁLOGO 1: INSUMOS FLORALES ── imagen a la IZQUIERDA -->
+    <a href="https://canva.link/4nhgb47upfxcf45" target="_blank" class="catalog-card img-left">
       <div class="card-img-wrap">
-          <img src="ramos.png" alt="Ramos"/>
+          <div class="card-img-placeholder">🌸</div>
       </div>
       <div class="card-body">
-        <strong>Ramos eternos</strong>
-        <p>Diseños únicos que duran para siempre, perfectos para cualquier ocasión especial.</p>
+        <strong>Insumos florales</strong>
+        <p>Flores, cintas, bases y todo lo que necesitas para crear arreglos únicos y hermosos.</p>
         <span class="card-cta">Ver catálogo ›</span>
       </div>
     </a>
 
-    <!-- ── CATÁLOGO 2: RAMOS CON PELUCHE ── imagen a la DERECHA -->
-    <a href="https://canva.link/v8qzy1mea9nye61" target="_blank" class="catalog-card img-right">
+    <!-- ── CATÁLOGO 2: PAPELES COREANOS ── imagen a la DERECHA -->
+    <a href="https://canva.link/4bw644nhccsjjcg" target="_blank" class="catalog-card img-right">
       <div class="card-img-wrap">
-          <img src="ramos-peluche.png" alt="Ramos con peluche"/>
-      </div>
-      <div class="card-body">
-        <strong>Ramos con peluche</strong>
-        <p>La combinación perfecta: flores eternas y un peluche tierno para sorprender con amor.</p>
-        <span class="card-cta">Ver catálogo ›</span>
-      </div>
-    </a>
+        <!--
+          OPCIÓN A — imagen desde URL:
+          <img src="https://TU-URL-DE-IMAGEN.jpg" alt="Papeles coreanos"/>
 
-    <!-- ── CATÁLOGO 3: PELUCHES ── imagen a la IZQUIERDA -->
-    <a href="https://canva.link/raghjpw426gk8da" target="_blank" class="catalog-card img-left">
-      <div class="card-img-wrap">
-          <img src="peluches.png" alt="Peluches"/>
+          OPCIÓN B — imagen local:
+          <img src="papeles.jpg" alt="Papeles coreanos"/>
+        -->
+        <div class="card-img-placeholder">🎀</div>
       </div>
       <div class="card-body">
-        <strong>Peluches</strong>
-        <p>Adorables compañeros de peluche, ideales para regalar ternura en cualquier momento.</p>
+        <strong>Papeles coreanos</strong>
+        <p>Papeles importados con diseños delicados, ideales para envolver y decorar tus ramos.</p>
         <span class="card-cta">Ver catálogo ›</span>
       </div>
     </a>
