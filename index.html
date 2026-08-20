@@ -79,9 +79,9 @@
     }
 
     .logo-img {
-      width: 86px;
-      height: 86px;
-      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+      border-radius: 30%;
       object-fit: cover;
       border: 3px solid var(--cream);
       background: var(--cream);
@@ -173,11 +173,6 @@
     .btn-text span   { display: block; font-size: .72rem; color: var(--muted); }
     .btn-arrow { font-size: 1.1rem; color: var(--rose); }
 
-    /* BOTÓN DESTACADO "Pedir mi ramo": la foto y el botón forman una
-       sola pieza pegada, mismo borde --coral. Cada uno lleva su
-       borde COMPLETO en los 4 lados (antes le faltaba el lado donde
-       se juntan, por eso se veía "abierto"); como el color es igual
-       en los dos, la unión se ve continua igual. */
     .featured-wrap {
       display: flex;
       align-items: center;
@@ -187,8 +182,8 @@
 
     .icon-carousel {
       position: relative;
-      width: 116px;
-      height: 116px;
+      width: 130px;
+      height: 130px;
       flex-shrink: 0;
       overflow: hidden;
       background: var(--peach);
@@ -213,7 +208,7 @@
 
     .btn-featured {
       flex: 1;
-      height: 96px;
+      height: 80px;
       margin-bottom: 0;
       padding: 16px;
       border: 1.5px solid var(--coral);
@@ -223,6 +218,54 @@
     .btn-featured .btn-text strong { font-size: 1rem; }
     .btn-featured .btn-text span   { font-size: .78rem; margin-top: 2px; }
     .btn-featured .btn-arrow       { font-size: 1.3rem; }
+
+    /* FILA "Comprar materiales" / "Comunidad gratis":
+       misma altura/tamaño de foto y de botón que "Pedir mi ramo",
+       para que ambas secciones se vean armonizadas. */
+    .split-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .split-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+      margin-bottom: 8px;
+    }
+
+    .split-photo {
+      width: 130px;
+      height: 130px;
+      max-width: 100%;
+      background: var(--peach);
+      border: 1.5px solid var(--coral);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .split-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .btn-split {
+      width: 100%;
+      height: 80px;
+      margin-bottom: 0;
+      padding: 16px;
+      border: 1.5px solid var(--coral);
+      border-radius: 18px;
+    }
+
+    .btn-split .btn-text strong { font-size: .9rem; }
+    .btn-split .btn-text span   { font-size: .72rem; margin-top: 2px; }
+    .btn-split .btn-arrow       { font-size: 1.2rem; }
 
     /* SOCIAL */
     .social-row { display: flex; gap: 8px; }
@@ -291,22 +334,28 @@
     <!-- PARA EMPRENDER -->
     <div class="section">
       <p class="section-label">Para emprender</p>
-      <a onclick="abrirWhatsApp('')" class="btn">
-        <div class="btn-icon">🪷</div>
-        <div class="btn-text">
-          <strong>Comprar materiales</strong>
-          <span>Flores, cintas, bases y más</span>
+      <div class="split-row">
+        <div class="split-wrap">
+          <div class="split-photo"><img src="materiales.png" alt="Comprar materiales"/></div>
+          <a onclick="abrirWhatsApp('')" class="btn btn-split">
+            <div class="btn-text">
+              <strong>Comprar materiales</strong>
+              <span>Flores, cintas, bases y más</span>
+            </div>
+            <span class="btn-arrow">›</span>
+          </a>
         </div>
-        <span class="btn-arrow">›</span>
-      </a>
-      <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" class="btn">
-        <div class="btn-icon">💐</div>
-        <div class="btn-text">
-          <strong>Comunidad gratis</strong>
-          <span>Aprende y crece con nosotras</span>
+        <div class="split-wrap">
+          <div class="split-photo"><img src="comunidad.png" alt="Comunidad gratis"/></div>
+          <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" class="btn btn-split">
+            <div class="btn-text">
+              <strong>Comunidad gratis</strong>
+              <span>Aprende y crece con nosotras</span>
+            </div>
+            <span class="btn-arrow">›</span>
+          </a>
         </div>
-        <span class="btn-arrow">›</span>
-      </a>
+      </div>
     </div>
 
     <!-- REDES -->
