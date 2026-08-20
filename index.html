@@ -45,10 +45,6 @@
       padding: 40px 20px 80px;
     }
 
-    /* BANNER
-       - .banner-wrap no recorta nada: así el logo, que sobresale
-         por debajo del banner, se ve completo.
-       - .banner-inner es quien recorta la imagen, no el wrap. */
     .banner-wrap {
       position: relative;
       margin: -40px -20px 56px;
@@ -177,6 +173,56 @@
     .btn-text span   { display: block; font-size: .72rem; color: var(--muted); }
     .btn-arrow { font-size: 1.1rem; color: var(--rose); }
 
+    /* BOTÓN DESTACADO "Pedir mi ramo": la foto y el botón forman una
+       sola pieza pegada, mismo borde --coral. Cada uno lleva su
+       borde COMPLETO en los 4 lados (antes le faltaba el lado donde
+       se juntan, por eso se veía "abierto"); como el color es igual
+       en los dos, la unión se ve continua igual. */
+    .featured-wrap {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .icon-carousel {
+      position: relative;
+      width: 116px;
+      height: 116px;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: var(--peach);
+      border: 1.5px solid var(--coral);
+      border-radius: 20px 0 0 20px;
+      z-index: 2;
+    }
+
+    .icon-carousel img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .icon-carousel img.is-active {
+      opacity: 1;
+    }
+
+    .btn-featured {
+      flex: 1;
+      height: 96px;
+      margin-bottom: 0;
+      padding: 16px;
+      border: 1.5px solid var(--coral);
+      border-radius: 0 18px 18px 0;
+    }
+
+    .btn-featured .btn-text strong { font-size: 1rem; }
+    .btn-featured .btn-text span   { font-size: .78rem; margin-top: 2px; }
+    .btn-featured .btn-arrow       { font-size: 1.3rem; }
+
     /* SOCIAL */
     .social-row { display: flex; gap: 8px; }
 
@@ -213,30 +259,32 @@
   <header class="hero">
     <div class="banner-wrap">
       <div class="banner-inner">
-        <img class="banner-img" src="banner.jpeg" alt="Banner Expresiones"/>
+        <img class="banner-img" src="banner.png" alt="Banner Expresiones"/>
         <div class="banner-fade"></div>
       </div>
       <img class="logo-img" src="logo2.png" alt="Expresiones"/>
     </div>
-    <h1>Expresiones <em>J&amp;M</em></h1>
-    <p>Rosas eternas hechas con amor &middot; Perú</p>
   </header>
-
-  <div class="divider"></div>
-
   <main>
 
     <!-- PARA REGALAR -->
     <div class="section">
       <p class="section-label">Para regalar</p>
-      <a onclick="abrirWhatsApp('')" class="btn">
-        <div class="btn-icon">🌸</div>
-        <div class="btn-text">
-          <strong>Pedir mi ramo</strong>
-          <span>Personalizado, hecho a mano</span>
+      <div class="featured-wrap">
+        <div class="icon-carousel" data-carousel>
+          <img src="ramo1.png" alt="Ramo hecho a mano" class="is-active"/>
+          <img src="ramo2.png" alt="Ramo hecho a mano"/>
+          <img src="ramo3.png" alt="Ramo hecho a mano"/>
+          <img src="ramo4.png" alt="Ramo hecho a mano"/>
         </div>
-        <span class="btn-arrow">›</span>
-      </a>
+        <a onclick="abrirWhatsApp('')" class="btn btn-featured">
+          <div class="btn-text">
+            <strong>Pedir mi ramo</strong>
+            <span>Personalizado, hecho a mano</span>
+          </div>
+          <span class="btn-arrow">›</span>
+        </a>
+      </div>
     </div>
 
     <!-- PARA EMPRENDER -->
@@ -287,6 +335,19 @@
       window.location.href = 'https://wa.me/' + numero + '?text=' + t;
     }, 1500);
   }
+
+  // Carrusel con desvanecido: cambia la foto activa cada 3 segundos.
+  // Funciona con cualquier cantidad de <img> dentro de [data-carousel].
+  document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+    var imgs = carousel.querySelectorAll('img');
+    if (imgs.length < 2) return;
+    var current = 0;
+    setInterval(function () {
+      imgs[current].classList.remove('is-active');
+      current = (current + 1) % imgs.length;
+      imgs[current].classList.add('is-active');
+    }, 3000);
+  });
 </script>
 
 </body>
