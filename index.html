@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Expresiones J&M 🌹</title>
+  <title>Expresiones</title>
   <meta name="description" content="Rosas eternas hechas con amor. Ramos, materiales y comunidad emprendedora."/>
-  <meta property="og:title" content="Expresiones J&M 🌹" />
+  <meta property="og:title" content="Expresiones" />
   <meta property="og:description" content="Rosas eternas hechas con amor. Ramos personalizados, materiales para emprender y comunidad de emprendedoras." />
   <meta property="og:image" content="https://gardeneternaljym.github.io/logo2.png" />
   <meta property="og:url" content="https://gardeneternaljym.github.io/" />
@@ -15,14 +15,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
+    :root {
+      /* Paleta sacada de la foto real del puesto */
+      --cream:       #FBEBDC; /* fondo, del beige/durazno claro */
+      --card:        #FFF7EE; /* fondo de tarjetas y botones */
+      --ink:         #431A12; /* texto principal, marrón oscuro */
+      --rose:        #A02E28; /* rojo rosa de las rosas — acento fuerte */
+      --terracotta:  #D8723B; /* terracota — acento secundario */
+      --coral:       #F3925F; /* coral cálido — bordes */
+      --peach:       #FBCFA0; /* durazno — hover / iconos */
+      --muted:       #99604C; /* texto secundario, marrón rosado */
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Nunito', sans-serif;
-      background: #f5ede6;
-      color: #3b1a0e;
+      background: var(--cream);
+      color: var(--ink);
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -33,28 +45,70 @@
       padding: 40px 20px 80px;
     }
 
+    /* BANNER
+       - .banner-wrap no recorta nada: así el logo, que sobresale
+         por debajo del banner, se ve completo.
+       - .banner-inner es quien recorta la imagen, no el wrap. */
+    .banner-wrap {
+      position: relative;
+      margin: -40px -20px 56px;
+      width: calc(100% + 40px);
+    }
+
+    .banner-inner {
+      position: relative;
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.1) brightness(0.97);
+    }
+
+    /* Degradado suave hacia el color de fondo de la página */
+    .banner-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(67, 26, 18, 0.14) 0%,
+        rgba(251, 235, 220, 0) 55%,
+        var(--cream) 100%
+      );
+      pointer-events: none;
+    }
+
+    .logo-img {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--cream);
+      background: var(--cream);
+      box-shadow: 0 4px 14px rgba(67, 26, 18, 0.22);
+
+      position: absolute;
+      left: 50%;
+      bottom: -43px;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
     /* HERO */
     .hero {
       text-align: center;
       padding: 0 0 32px;
     }
 
-    .logo-img {
-      width: 82px;
-      height: 82px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2.5px solid #e0a090;
-      display: block;
-      margin: 0 auto 14px;
-      background: #f5ede6;
-    }
-
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: 1.65rem;
       font-weight: 400;
-      color: #c1644a;
+      color: var(--rose);
       margin-bottom: 5px;
     }
 
@@ -62,12 +116,12 @@
 
     .hero p {
       font-size: .8rem;
-      color: #a07060;
+      color: var(--muted);
     }
 
     .divider {
       height: 1.5px;
-      background: #e0a090;
+      background: var(--coral);
       border-radius: 2px;
       margin: 0 0 28px;
     }
@@ -80,7 +134,7 @@
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: #b07060;
+      color: var(--terracotta);
       margin-bottom: 10px;
     }
 
@@ -91,26 +145,26 @@
       gap: 12px;
       width: 100%;
       padding: 14px 16px;
-      background: #fdf6f0;
-      border: 1.5px solid #e0a090;
+      background: var(--card);
+      border: 1.5px solid var(--coral);
       border-radius: 14px;
       cursor: pointer;
       text-decoration: none;
-      color: #3b1a0e;
+      color: var(--ink);
       font-family: 'Nunito', sans-serif;
       font-size: .88rem;
       transition: background .15s, transform .1s;
       margin-bottom: 8px;
     }
 
-    .btn:hover  { background: #f5d8cc; }
+    .btn:hover  { background: var(--peach); }
     .btn:active { transform: scale(.98); }
 
     .btn-icon {
       width: 38px;
       height: 38px;
       border-radius: 10px;
-      background: #f5d8cc;
+      background: var(--peach);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -120,8 +174,8 @@
 
     .btn-text { flex: 1; text-align: left; }
     .btn-text strong { display: block; font-size: .86rem; font-weight: 600; }
-    .btn-text span   { display: block; font-size: .72rem; color: #a07060; }
-    .btn-arrow { font-size: 1.1rem; color: #c1644a; }
+    .btn-text span   { display: block; font-size: .72rem; color: var(--muted); }
+    .btn-arrow { font-size: 1.1rem; color: var(--rose); }
 
     /* SOCIAL */
     .social-row { display: flex; gap: 8px; }
@@ -130,23 +184,23 @@
       flex: 1;
       padding: 12px 8px;
       text-align: center;
-      background: #fdf6f0;
-      border: 1.5px solid #e0a090;
+      background: var(--card);
+      border: 1.5px solid var(--coral);
       border-radius: 14px;
       font-size: .73rem;
       font-weight: 600;
-      color: #a07060;
+      color: var(--muted);
       text-decoration: none;
       transition: background .15s;
     }
 
-    .social-btn:hover { background: #f5d8cc; }
+    .social-btn:hover { background: var(--peach); }
 
     /* FOOTER */
     .footer {
       text-align: center;
       font-size: .68rem;
-      color: #a07060;
+      color: var(--muted);
       margin-top: 32px;
       line-height: 1.8;
     }
@@ -157,7 +211,13 @@
 <div class="page">
 
   <header class="hero">
-    <img class="logo-img" src="logo2.png" alt="Expresiones J&M"/>
+    <div class="banner-wrap">
+      <div class="banner-inner">
+        <img class="banner-img" src="banner.jpeg" alt="Banner Expresiones"/>
+        <div class="banner-fade"></div>
+      </div>
+      <img class="logo-img" src="logo2.png" alt="Expresiones"/>
+    </div>
     <h1>Expresiones <em>J&amp;M</em></h1>
     <p>Rosas eternas hechas con amor &middot; Perú</p>
   </header>
@@ -213,7 +273,7 @@
   </main>
 
   <footer class="footer">
-    Expresiones J&amp;M &copy; 2026 &middot; Perú
+    Expresiones &copy; 2026 &middot; Perú
   </footer>
 
 </div>
