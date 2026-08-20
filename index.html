@@ -47,7 +47,7 @@
 
     .banner-wrap {
       position: relative;
-      margin: -40px -20px 56px;
+      margin: -40px -20px 28px; /* antes 56px: acerca el contenido al logo */
       width: calc(100% + 40px);
     }
 
@@ -97,7 +97,7 @@
     /* HERO */
     .hero {
       text-align: center;
-      padding: 0 0 32px;
+      padding: 0 0 14px; /* antes 32px: menos espacio bajo el logo */
     }
 
     .hero h1 {
@@ -181,6 +181,7 @@
     .featured-wrap {
       display: flex;
       align-items: center;
+      gap: 12px; /* separa la foto del botón */
       margin-bottom: 8px;
     }
 
@@ -192,7 +193,7 @@
       overflow: hidden;
       background: var(--peach);
       border: 1.5px solid var(--coral);
-      border-radius: 20px 0 0 20px;
+      border-radius: 20px; /* redondeado completo, ya no se pega al botón */
       z-index: 2;
     }
 
@@ -216,7 +217,7 @@
       margin-bottom: 0;
       padding: 16px;
       border: 1.5px solid var(--coral);
-      border-radius: 0 18px 18px 0;
+      border-radius: 18px; /* las 4 esquinas, ya no comparte lado con la foto */
     }
 
     .btn-featured .btn-text strong { font-size: 1rem; }
