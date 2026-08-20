@@ -47,7 +47,7 @@
 
     .banner-wrap {
       position: relative;
-      margin: -40px -20px 28px; /* antes 56px: acerca el contenido al logo */
+      margin: -40px -20px 0;
       width: calc(100% + 40px);
     }
 
@@ -65,62 +65,64 @@
       filter: saturate(1.1) brightness(0.97);
     }
 
-    /* Degradado suave hacia el color de fondo de la página */
+    /* Degradado suave y parejo hacia el color de fondo de la página */
     .banner-fade {
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(67, 26, 18, 0.14) 0%,
-        rgba(251, 235, 220, 0) 55%,
+        rgba(67, 26, 18, 0.08) 0%,
+        rgba(251, 235, 220, 0) 45%,
+        rgba(251, 235, 220, 0.55) 78%,
         var(--cream) 100%
       );
       pointer-events: none;
     }
 
     .logo-img {
-      width: 110px;
-      height: 110px;
-      border-radius: 30%;
+      width: 112px;
+      height: 112px;
+      border-radius: 28%;
       object-fit: cover;
-      border: 3px solid var(--cream);
-      background: var(--cream);
-      box-shadow: 0 4px 14px rgba(67, 26, 18, 0.22);
+      display: block;
+      border: 3px solid var(--card);
+      background: var(--card);
+      box-shadow: 0 10px 24px rgba(67, 26, 18, 0.20), 0 0 0 1px rgba(216, 114, 59, 0.12);
 
-      position: absolute;
-      left: 50%;
-      bottom: -43px;
-      transform: translateX(-50%);
+      position: relative;
+      margin: -56px auto 0;
       z-index: 2;
     }
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 0 0 14px; /* antes 32px: menos espacio bajo el logo */
+    /* Redes sociales arriba, debajo del logo: solo ícono, sin texto */
+    .social-row-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+      margin-bottom: 34px;
     }
 
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.65rem;
-      font-weight: 400;
-      color: var(--rose);
-      margin-bottom: 5px;
+    .social-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1.5px solid var(--coral);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background .15s, transform .1s, box-shadow .15s;
+      box-shadow: 0 2px 6px rgba(67, 26, 18, 0.08);
     }
 
-    .hero h1 em { font-style: italic; }
+    .social-icon svg { width: 22px; height: 22px; display: block; }
 
-    .hero p {
-      font-size: .8rem;
-      color: var(--muted);
-    }
-
-    .divider {
-      height: 1.5px;
-      background: var(--coral);
-      border-radius: 2px;
-      margin: 0 0 28px;
-    }
+    .social-icon:hover  { background: var(--peach); box-shadow: 0 4px 10px rgba(67, 26, 18, 0.14); }
+    .social-icon:active { transform: scale(.95); }
 
     /* SECTIONS */
     .section { margin-bottom: 28px; }
@@ -165,86 +167,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
-    }
-
-    .btn-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
 
     .btn-text { flex: 1; text-align: left; }
     .btn-text strong { display: block; font-size: .86rem; font-weight: 600; }
     .btn-text span   { display: block; font-size: .72rem; color: var(--muted); }
     .btn-arrow { font-size: 1.1rem; color: var(--rose); }
-
-    .featured-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px; /* separa la foto del botón */
-      margin-bottom: 8px;
-    }
-
-    .icon-carousel {
-      position: relative;
-      width: 130px;
-      height: 130px;
-      flex-shrink: 0;
-      overflow: hidden;
-      background: var(--peach);
-      border: 1.5px solid var(--coral);
-      border-radius: 20px; /* redondeado completo, ya no se pega al botón */
-      z-index: 2;
-    }
-
-    .icon-carousel img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    .icon-carousel img.is-active {
-      opacity: 1;
-    }
-
-    .btn-featured {
-      flex: 1;
-      height: 80px;
-      margin-bottom: 0;
-      padding: 16px;
-      border: 1.5px solid var(--coral);
-      border-radius: 18px; /* las 4 esquinas, ya no comparte lado con la foto */
-    }
-
-    .btn-featured .btn-text strong { font-size: 1rem; }
-    .btn-featured .btn-text span   { font-size: .78rem; margin-top: 2px; }
-    .btn-featured .btn-arrow       { font-size: 1.3rem; }
-
-    /* SOCIAL */
-    .social-row { display: flex; gap: 8px; }
-
-    .social-btn {
-      flex: 1;
-      padding: 12px 8px;
-      text-align: center;
-      background: var(--card);
-      border: 1.5px solid var(--coral);
-      border-radius: 14px;
-      font-size: .73rem;
-      font-weight: 600;
-      color: var(--muted);
-      text-decoration: none;
-      transition: background .15s;
-    }
-
-    .social-btn:hover { background: var(--peach); }
 
     /* FOOTER */
     .footer {
@@ -268,34 +198,56 @@
       </div>
       <img class="logo-img" src="logo2.png" alt="Expresiones"/>
     </div>
+    <div class="social-row-top">
+      <a href="https://www.tiktok.com/@garden_eternal" target="_blank" class="social-icon" aria-label="TikTok">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32.5 6c1 4.2 3.7 7 8 7.6v6.1c-2.9.2-5.6-.7-8-2.4v13.1c0 7.4-6 12.6-12.7 12.6C13 43 7 37.7 7 30.4 7 23 13 17.7 19.8 17.7c.7 0 1.4.1 2.1.2v6.4c-.7-.2-1.4-.3-2.1-.3-3.6 0-6.5 3-6.5 6.4s2.9 6.4 6.5 6.4 6.7-2.9 6.7-6.4V6h6z" fill="#431A12"/>
+        </svg>
+      </a>
+      <a href="https://www.instagram.com/gardeneternal_jm/" target="_blank" class="social-icon" aria-label="Instagram">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="igGrad" x1="0" y1="48" x2="48" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#FEC053"/>
+              <stop offset=".35" stop-color="#F2703E"/>
+              <stop offset=".6" stop-color="#DC2E63"/>
+              <stop offset=".85" stop-color="#9B32B8"/>
+              <stop offset="1" stop-color="#6B31C1"/>
+            </linearGradient>
+          </defs>
+          <rect x="6" y="6" width="36" height="36" rx="11" fill="url(#igGrad)"/>
+          <rect x="14" y="14" width="20" height="20" rx="7" fill="none" stroke="#fff" stroke-width="2.6"/>
+          <circle cx="24" cy="24" r="5.2" fill="none" stroke="#fff" stroke-width="2.6"/>
+          <circle cx="33" cy="15" r="1.8" fill="#fff"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/people/Garden-Rosas-Eternas/61574939932181/?locale=es_LA" target="_blank" class="social-icon" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+    </div>
   </header>
   <main>
 
     <!-- PARA REGALAR -->
     <div class="section">
       <p class="section-label">Para regalar</p>
-      <div class="featured-wrap">
-        <div class="icon-carousel" data-carousel>
-          <img src="ramo1.png" alt="Ramo hecho a mano" class="is-active"/>
-          <img src="ramo2.png" alt="Ramo hecho a mano"/>
-          <img src="ramo3.png" alt="Ramo hecho a mano"/>
-          <img src="ramo4.png" alt="Ramo hecho a mano"/>
+      <a onclick="abrirWhatsApp('')" class="btn">
+        <div class="btn-icon">💐</div>
+        <div class="btn-text">
+          <strong>Pedir mi ramo</strong>
+          <span>Personalizado, hecho a mano</span>
         </div>
-        <a onclick="abrirWhatsApp('')" class="btn btn-featured">
-          <div class="btn-text">
-            <strong>Pedir mi ramo</strong>
-            <span>Personalizado, hecho a mano</span>
-          </div>
-          <span class="btn-arrow">›</span>
-        </a>
-      </div>
+        <span class="btn-arrow">›</span>
+      </a>
     </div>
 
     <!-- PARA EMPRENDER -->
     <div class="section">
       <p class="section-label">Para emprender</p>
       <a onclick="abrirWhatsApp('')" class="btn">
-        <div class="btn-icon"><img src="materiales.png" alt="Comprar materiales"/></div>
+        <div class="btn-icon">🪷</div>
         <div class="btn-text">
           <strong>Comprar materiales</strong>
           <span>Flores, cintas, bases y más</span>
@@ -303,23 +255,13 @@
         <span class="btn-arrow">›</span>
       </a>
       <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" class="btn">
-        <div class="btn-icon"><img src="comunidad.png" alt="Comunidad gratis"/></div>
+        <div class="btn-icon">👩‍🤝‍👩</div>
         <div class="btn-text">
           <strong>Comunidad gratis</strong>
           <span>Aprende y crece con nosotras</span>
         </div>
         <span class="btn-arrow">›</span>
       </a>
-    </div>
-
-    <!-- REDES -->
-    <div class="section">
-      <p class="section-label">Síguenos</p>
-      <div class="social-row">
-        <a href="https://www.tiktok.com/@garden_eternal" target="_blank" class="social-btn">TikTok</a>
-        <a href="https://www.instagram.com/gardeneternal_jm/" target="_blank" class="social-btn">Instagram</a>
-        <a href="https://www.facebook.com/people/Garden-Rosas-Eternas/61574939932181/?locale=es_LA" target="_blank" class="social-btn">Facebook</a>
-      </div>
     </div>
 
   </main>
@@ -339,19 +281,6 @@
       window.location.href = 'https://wa.me/' + numero + '?text=' + t;
     }, 1500);
   }
-
-  // Carrusel con desvanecido: cambia la foto activa cada 3 segundos.
-  // Funciona con cualquier cantidad de <img> dentro de [data-carousel].
-  document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
-    var imgs = carousel.querySelectorAll('img');
-    if (imgs.length < 2) return;
-    var current = 0;
-    setInterval(function () {
-      imgs[current].classList.remove('is-active');
-      current = (current + 1) % imgs.length;
-      imgs[current].classList.add('is-active');
-    }, 3000);
-  });
 </script>
 
 </body>
