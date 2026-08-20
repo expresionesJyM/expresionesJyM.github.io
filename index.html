@@ -157,15 +157,23 @@
     .btn:active { transform: scale(.98); }
 
     .btn-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       background: var(--peach);
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.1rem;
       flex-shrink: 0;
+    }
+
+    .btn-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .btn-text { flex: 1; text-align: left; }
@@ -218,54 +226,6 @@
     .btn-featured .btn-text strong { font-size: 1rem; }
     .btn-featured .btn-text span   { font-size: .78rem; margin-top: 2px; }
     .btn-featured .btn-arrow       { font-size: 1.3rem; }
-
-    /* FILA "Comprar materiales" / "Comunidad gratis":
-       misma altura/tamaño de foto y de botón que "Pedir mi ramo",
-       para que ambas secciones se vean armonizadas. */
-    .split-row {
-      display: flex;
-      gap: 12px;
-    }
-
-    .split-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      flex: 1;
-      min-width: 0;
-      margin-bottom: 8px;
-    }
-
-    .split-photo {
-      width: 130px;
-      height: 130px;
-      max-width: 100%;
-      background: var(--peach);
-      border: 1.5px solid var(--coral);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .split-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .btn-split {
-      width: 100%;
-      height: 80px;
-      margin-bottom: 0;
-      padding: 16px;
-      border: 1.5px solid var(--coral);
-      border-radius: 18px;
-    }
-
-    .btn-split .btn-text strong { font-size: .9rem; }
-    .btn-split .btn-text span   { font-size: .72rem; margin-top: 2px; }
-    .btn-split .btn-arrow       { font-size: 1.2rem; }
 
     /* SOCIAL */
     .social-row { display: flex; gap: 8px; }
@@ -334,28 +294,22 @@
     <!-- PARA EMPRENDER -->
     <div class="section">
       <p class="section-label">Para emprender</p>
-      <div class="split-row">
-        <div class="split-wrap">
-          <div class="split-photo"><img src="materiales.png" alt="Comprar materiales"/></div>
-          <a onclick="abrirWhatsApp('')" class="btn btn-split">
-            <div class="btn-text">
-              <strong>Comprar materiales</strong>
-              <span>Flores, cintas, bases y más</span>
-            </div>
-            <span class="btn-arrow">›</span>
-          </a>
+      <a onclick="abrirWhatsApp('')" class="btn">
+        <div class="btn-icon"><img src="materiales.png" alt="Comprar materiales"/></div>
+        <div class="btn-text">
+          <strong>Comprar materiales</strong>
+          <span>Flores, cintas, bases y más</span>
         </div>
-        <div class="split-wrap">
-          <div class="split-photo"><img src="comunidad.png" alt="Comunidad gratis"/></div>
-          <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" class="btn btn-split">
-            <div class="btn-text">
-              <strong>Comunidad gratis</strong>
-              <span>Aprende y crece con nosotras</span>
-            </div>
-            <span class="btn-arrow">›</span>
-          </a>
+        <span class="btn-arrow">›</span>
+      </a>
+      <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" class="btn">
+        <div class="btn-icon"><img src="comunidad.png" alt="Comunidad gratis"/></div>
+        <div class="btn-text">
+          <strong>Comunidad gratis</strong>
+          <span>Aprende y crece con nosotras</span>
         </div>
-      </div>
+        <span class="btn-arrow">›</span>
+      </a>
     </div>
 
     <!-- REDES -->
