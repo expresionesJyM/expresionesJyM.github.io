@@ -318,14 +318,29 @@
 </div>
 
 <script>
-  // Solo mostramos el aviso si detectamos que el usuario está en el navegador
-  // interno de TikTok, Instagram o Facebook (WebView), donde los links a
-  // WhatsApp a veces necesitan un empujón manual la primera vez.
   (function () {
     var ua = navigator.userAgent || '';
+    // Detectamos si el usuario viene desde TikTok, Instagram o Facebook
     var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
+    
     if (isInAppBrowser) {
-      document.getElementById('inappBanner').classList.add('show');
+      // 1. Siempre mostramos el banner de aviso por seguridad
+      var banner = document.getElementById('inappBanner');
+      if (banner) {
+        banner.classList.add('show');
+      }
+
+      // 2. Si el usuario está en ANDROID, forzamos la salida al navegador Chrome del teléfono
+      // Esto hará que tu página se vuelva a abrir en Chrome y los botones de WhatsApp funcionen al 100% automáticamente
+      if (/Android/i.test(ua)) {
+        // Obtenemos la dirección exacta actual de tu GitHub Pages
+        var currentUrl = window.location.href.replace(/^https?:\/\//, '');
+        // Creamos un intento de apertura externa para el navegador Chrome de Android
+        window.location.href = "intent://" + currentUrl + "#Intent;scheme=https;package=com.android.chrome;end";
+      }
+      
+      // Nota para iOS (iPhone): Apple bloquea estos redireccionamientos automáticos, 
+      // por lo que los usuarios de iPhone verán tu hermoso banner instructivo para abrirlo manualmente.
     }
   })();
 </script>
