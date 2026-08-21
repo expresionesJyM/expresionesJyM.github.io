@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Expresiones</title>
-  <meta name="description" content="Rosas eternas hechas con amor. Ramos, materiales y comunidad emprendedora."/>
+  <meta name="description" content="Rosas eternas hechas con amor. Ramos, materiales y comunidad emprendedora." />
   <meta property="og:title" content="Expresiones" />
-  <meta property="og:description" content="Rosas eternas hechas con amor. Ramos personalizados, materiales para emprender y comunidad de emprendedoras." />
+  <meta property="og:description"
+    content="Rosas eternas hechas con amor. Ramos personalizados, materiales para emprender y comunidad de emprendedoras." />
   <meta property="og:image" content="https://gardeneternaljym.github.io/logo2.png" />
   <meta property="og:url" content="https://gardeneternaljym.github.io/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_PE" />
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Nunito:wght@300;400;600&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
-      --cream:       #FFF6EE;
-      --card:        #FFFDF9;
-      --ink:         #3D2418;
-      --rose:        #D9718F;
-      --terracotta:  #C98A2B;
-      --coral:       #E8A15E;
-      --peach:       #FBE3D3;
-      --muted:       #9C6B5C;
-      --turquoise:   #4FB3A9;
+      /* Paleta sacada de la foto real del puesto: rosa-durazno + dorado cálido + turquesa de acento */
+      --cream: #FFF6EE;
+      /* fondo, crema cálido como el mantel */
+      --card: #FFFDF9;
+      /* fondo de tarjetas y botones */
+      --ink: #3D2418;
+      /* texto principal, marrón oscuro del letrero cursivo */
+      --rose: #D9718F;
+      /* rosa-durazno de los envoltorios — acento fuerte */
+      --terracotta: #C98A2B;
+      /* dorado ámbar de la iluminación — acento secundario */
+      --coral: #E8A15E;
+      /* durazno dorado — bordes */
+      --peach: #FBE3D3;
+      /* durazno pálido — hover / iconos */
+      --muted: #9C6B5C;
+      /* texto secundario, marrón rosado */
+      --turquoise: #4FB3A9;
+      /* toque turquesa de contraste, visto en un par de envolturas */
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Nunito', sans-serif;
@@ -65,16 +87,15 @@
       filter: saturate(1.1) brightness(0.97);
     }
 
+    /* Degradado suave y parejo hacia el color de fondo de la página */
     .banner-fade {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(61, 52, 24, 0.08) 0%,
-        rgba(255, 251, 239, 0) 45%,
-        rgba(255, 251, 239, 0.55) 78%,
-        var(--cream) 100%
-      );
+      background: linear-gradient(to bottom,
+          rgba(61, 52, 24, 0.08) 0%,
+          rgba(255, 251, 239, 0) 45%,
+          rgba(255, 251, 239, 0.55) 78%,
+          var(--cream) 100%);
       pointer-events: none;
     }
 
@@ -93,6 +114,7 @@
       z-index: 2;
     }
 
+    /* Redes sociales arriba, debajo del logo: solo ícono, sin texto */
     .social-row-top {
       display: flex;
       justify-content: center;
@@ -117,12 +139,25 @@
       box-shadow: 0 2px 6px rgba(61, 52, 24, 0.08);
     }
 
-    .social-icon svg { width: 22px; height: 22px; display: block; }
+    .social-icon svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
 
-    .social-icon:hover  { background: var(--peach); box-shadow: 0 4px 10px rgba(61, 52, 24, 0.14); }
-    .social-icon:active { transform: scale(.95); }
+    .social-icon:hover {
+      background: var(--peach);
+      box-shadow: 0 4px 10px rgba(61, 52, 24, 0.14);
+    }
 
-    .section { margin-bottom: 28px; }
+    .social-icon:active {
+      transform: scale(.95);
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 28px;
+    }
 
     .section-label {
       font-size: .68rem;
@@ -133,6 +168,7 @@
       margin-bottom: 10px;
     }
 
+    /* BUTTONS */
     .btn {
       display: flex;
       align-items: center;
@@ -151,8 +187,13 @@
       margin-bottom: 8px;
     }
 
-    .btn:hover  { background: var(--peach); }
-    .btn:active { transform: scale(.98); }
+    .btn:hover {
+      background: var(--peach);
+    }
+
+    .btn:active {
+      transform: scale(.98);
+    }
 
     .btn-icon {
       width: 44px;
@@ -176,27 +217,32 @@
       stroke-linejoin: round;
     }
 
-    .btn-text { flex: 1; text-align: left; }
-    .btn-text strong { display: block; font-size: .86rem; font-weight: 600; }
-    .btn-text span   { display: block; font-size: .72rem; color: var(--muted); }
-    .btn-arrow { font-size: 1.1rem; color: var(--rose); }
-
-    .inapp-banner {
-      display: none;
-      align-items: flex-start;
-      gap: 10px;
-      background: var(--peach);
-      border: 1.5px solid var(--coral);
-      border-radius: 14px;
-      padding: 12px 14px;
-      margin-bottom: 20px;
-      font-size: .78rem;
-      line-height: 1.45;
-      color: var(--ink);
+    .btn-text {
+      flex: 1;
+      text-align: left;
     }
-    .inapp-banner.show { display: flex; }
-    .inapp-banner strong { color: var(--rose); }
 
+    .btn-text strong {
+      display: block;
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .btn-text span {
+      display: block;
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    .btn-arrow {
+      font-size: 1.1rem;
+      color: var(--rose);
+    }
+
+
+
+
+    /* FOOTER */
     .footer {
       text-align: center;
       font-size: .68rem;
@@ -206,127 +252,157 @@
     }
   </style>
 </head>
+
 <body>
 
-<div class="page">
+  <div class="page">
 
-  <header class="hero">
-    <div class="banner-wrap">
-      <div class="banner-inner">
-        <img class="banner-img" src="banner.png" alt="Banner Expresiones"/>
-        <div class="banner-fade"></div>
+    <header class="hero">
+      <div class="banner-wrap">
+        <div class="banner-inner">
+          <img class="banner-img" src="banner.png" alt="Banner Expresiones" />
+          <div class="banner-fade"></div>
+        </div>
+        <img class="logo-img" src="logo2.png" alt="Expresiones" />
       </div>
-      <img class="logo-img" src="logo2.png" alt="Expresiones"/>
-    </div>
-    <div class="social-row-top">
-      <a href="https://www.tiktok.com/@garden_eternal" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="TikTok">
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32.5 6c1 4.2 3.7 7 8 7.6v6.1c-2.9.2-5.6-.7-8-2.4v13.1c0 7.4-6 12.6-12.7 12.6C13 43 7 37.7 7 30.4 7 23 13 17.7 19.8 17.7c.7 0 1.4.1 2.1.2v6.4c-.7-.2-1.4-.3-2.1-.3-3.6 0-6.5 3-6.5 6.4s2.9 6.4 6.5 6.4 6.7-2.9 6.7-6.4V6h6z" fill="#3D2418"/>
-        </svg>
-      </a>
-      <a href="https://www.instagram.com/gardeneternal_jm/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
-        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="igGrad" x1="0" y1="48" x2="48" y2="0" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#FEC053"/>
-              <stop offset=".35" stop-color="#F2703E"/>
-              <stop offset=".6" stop-color="#DC2E63"/>
-              <stop offset=".85" stop-color="#9B32B8"/>
-              <stop offset="1" stop-color="#6B31C1"/>
-            </linearGradient>
-          </defs>
-          <rect x="6" y="6" width="36" height="36" rx="11" fill="url(#igGrad)"/>
-          <rect x="14" y="14" width="20" height="20" rx="7" fill="none" stroke="#fff" stroke-width="2.6"/>
-          <circle cx="24" cy="24" r="5.2" fill="none" stroke="#fff" stroke-width="2.6"/>
-          <circle cx="33" cy="15" r="1.8" fill="#fff"/>
-        </svg>
-      </a>
-      <a href="https://www.facebook.com/people/Garden-Rosas-Eternas/61574939932181/?locale=es_LA" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-        </svg>
-      </a>
-    </div>
-  </header>
-  <main>
+      <div class="social-row-top">
+        <a href="https://www.tiktok.com/@garden_eternal" target="_blank" rel="noopener noreferrer" class="social-icon"
+          aria-label="TikTok">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M32.5 6c1 4.2 3.7 7 8 7.6v6.1c-2.9.2-5.6-.7-8-2.4v13.1c0 7.4-6 12.6-12.7 12.6C13 43 7 37.7 7 30.4 7 23 13 17.7 19.8 17.7c.7 0 1.4.1 2.1.2v6.4c-.7-.2-1.4-.3-2.1-.3-3.6 0-6.5 3-6.5 6.4s2.9 6.4 6.5 6.4 6.7-2.9 6.7-6.4V6h6z"
+              fill="#3D2418" />
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/gardeneternal_jm/" target="_blank" rel="noopener noreferrer"
+          class="social-icon" aria-label="Instagram">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="igGrad" x1="0" y1="48" x2="48" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#FEC053" />
+                <stop offset=".35" stop-color="#F2703E" />
+                <stop offset=".6" stop-color="#DC2E63" />
+                <stop offset=".85" stop-color="#9B32B8" />
+                <stop offset="1" stop-color="#6B31C1" />
+              </linearGradient>
+            </defs>
+            <rect x="6" y="6" width="36" height="36" rx="11" fill="url(#igGrad)" />
+            <rect x="14" y="14" width="20" height="20" rx="7" fill="none" stroke="#fff" stroke-width="2.6" />
+            <circle cx="24" cy="24" r="5.2" fill="none" stroke="#fff" stroke-width="2.6" />
+            <circle cx="33" cy="15" r="1.8" fill="#fff" />
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/people/Garden-Rosas-Eternas/61574939932181/?locale=es_LA" target="_blank"
+          rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#1877F2"
+              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg>
+        </a>
+      </div>
+    </header>
+    <main>
 
-    <div class="inapp-banner" id="inappBanner">
-      <span>ℹ️</span>
-      <span>
-        Estás viendo esto desde el navegador de la app. Si el botón no abre WhatsApp,
-        toca <strong>los tres puntos •••</strong> (arriba a la derecha) y elige
-        <strong>“Abrir en navegador”</strong>, luego vuelve a tocar el botón.
-      </span>
-    </div>
 
-    <!-- PARA REGALAR -->
-    <div class="section">
-      <p class="section-label">Para regalar</p>
-      <a href="https://wa.link/yz16ll"
-         target="_blank" rel="noopener noreferrer" class="btn">
-        <div class="btn-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 3c1.8 1.8 1.8 4.6 0 7-1.8-2.4-1.8-5.2 0-7z"/><path d="M6.5 6.5c2.4.6 4 2.6 4 5-2.4-.6-4-2.6-4-5z"/><path d="M17.5 6.5c-2.4.6-4 2.6-4 5 2.4-.6 4-2.6 4-5z"/><path d="M12 10v11"/><path d="M7 21c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5"/></svg>
-        </div>
-        <div class="btn-text">
-          <strong>Pedir mi ramo</strong>
-          <span>Personalizado, hecho a mano</span>
-        </div>
-        <span class="btn-arrow">›</span>
-      </a>
-    </div>
+      <!-- PARA REGALAR -->
+      <div class="section">
+        <p class="section-label">Para regalar</p>
+        <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" target="_blank"
+          rel="noopener noreferrer" class="btn">
+          <div class="btn-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3c1.8 1.8 1.8 4.6 0 7-1.8-2.4-1.8-5.2 0-7z" />
+              <path d="M6.5 6.5c2.4.6 4 2.6 4 5-2.4-.6-4-2.6-4-5z" />
+              <path d="M17.5 6.5c-2.4.6-4 2.6-4 5 2.4-.6 4-2.6 4-5z" />
+              <path d="M12 10v11" />
+              <path d="M7 21c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5" />
+            </svg>
+          </div>
+          <div class="btn-text">
+            <strong>Pedir mi ramo</strong>
+            <span>Personalizado, hecho a mano</span>
+          </div>
+          <span class="btn-arrow">›</span>
+        </a>
+      </div>
 
-    <!-- PARA EMPRENDER -->
-    <div class="section">
-      <p class="section-label">Para emprender</p>
-      <a href="https://api.whatsapp.com/send?phone=51956744914&text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7"
-         target="_blank" rel="noopener noreferrer" class="btn">
-        <div class="btn-icon">
-          <svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="3.2"/><circle cx="7" cy="17" r="3.2"/><path d="M19 5L5.5 18.5"/><path d="M19 19L5.5 5.5"/></svg>
-        </div>
-        <div class="btn-text">
-          <strong>Comprar materiales</strong>
-          <span>Flores, cintas, bases y más</span>
-        </div>
-        <span class="btn-arrow">›</span>
-      </a>
-      <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" target="_blank" rel="noopener noreferrer" class="btn">
-        <div class="btn-icon" style="background: #DCF1EE;">
-          <svg viewBox="0 0 24 24" style="stroke: var(--turquoise);"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M16 4.3a3.2 3.2 0 010 6.2"/><path d="M21 20c0-3-2-5.2-4.5-5.8"/></svg>
-        </div>
-        <div class="btn-text">
-          <strong>Comunidad gratis</strong>
-          <span>Aprende y crece con nosotras</span>
-        </div>
-        <span class="btn-arrow">›</span>
-      </a>
-    </div>
+      <!-- PARA EMPRENDER -->
+      <div class="section">
+        <p class="section-label">Para emprender</p>
+        <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" target="_blank"
+          rel="noopener noreferrer" class="btn">
+          <div class="btn-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="7" cy="7" r="3.2" />
+              <circle cx="7" cy="17" r="3.2" />
+              <path d="M19 5L5.5 18.5" />
+              <path d="M19 19L5.5 5.5" />
+            </svg>
+          </div>
+          <div class="btn-text">
+            <strong>Comprar materiales</strong>
+            <span>Flores, cintas, bases y más</span>
+          </div>
+          <span class="btn-arrow">›</span>
+        </a>
+        <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" target="_blank" rel="noopener noreferrer"
+          class="btn">
+          <div class="btn-icon" style="background: #DCF1EE;">
+            <svg viewBox="0 0 24 24" style="stroke: var(--turquoise);">
+              <circle cx="9" cy="8" r="3.2" />
+              <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6" />
+              <path d="M16 4.3a3.2 3.2 0 010 6.2" />
+              <path d="M21 20c0-3-2-5.2-4.5-5.8" />
+            </svg>
+          </div>
+          <div class="btn-text">
+            <strong>Comunidad gratis</strong>
+            <span>Aprende y crece con nosotras</span>
+          </div>
+          <span class="btn-arrow">›</span>
+        </a>
+      </div>
 
-  </main>
+    </main>
 
-  <footer class="footer">
-    Expresiones &copy; 2026 &middot; Perú
-  </footer>
+    <footer class="footer">
+      Expresiones &copy; 2026 &middot; Perú
+    </footer>
 
-</div>
+  </div>
 
-<script>
-  (function () {
-    var ua = navigator.userAgent || '';
-    var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
-    
-    if (isInAppBrowser) {
-      var banner = document.getElementById('inappBanner');
-      if (banner) {
-        banner.classList.add('show');
+  <script>
+    (function () {
+      var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+      var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
+
+      if (isInAppBrowser) {
+        if (/Android/i.test(ua)) {
+          var cleanHost = window.location.host + window.location.pathname;
+          window.location.href = "intent://" + cleanHost + "#Intent;scheme=https;package=com.android.chrome;end";
+        }
+        if (/iPhone|iPad|iPod/i.test(ua)) {
+          var botones = document.querySelectorAll('.btn');
+          botones.forEach(function(boton) {
+            boton.addEventListener('click', function(e) {
+              var urlOriginal = boton.getAttribute('href');
+              if (urlOriginal && urlOriginal.includes('whatsapp.com')) {
+                e.preventDefault();
+                var urlParams = new URLSearchParams(urlOriginal.split('?'));
+                var texto = urlParams.get('text') || '';
+                window.location.href = "whatsapp://send?phone=51956744914&text=" + encodeURIComponent(texto);
+              } else if (urlOriginal && urlOriginal.includes('://whatsapp.com')) {
+                e.preventDefault();
+                var codigoGrupo = urlOriginal.split('/').pop();
+                window.location.href = "whatsapp://chat?code=" + codigoGrupo;
+              }
+            });
+          });
+        }
       }
-
-      if (/Android/i.test(ua)) {
-        var currentUrl = window.location.href.replace(/^https?:\/\//, '');
-        window.location.href = "intent://" + currentUrl + "#Intent;scheme=https;package=com.android.chrome;end";
-      }
-    }
-  })();
-</script>
+    })();
+  </script>
 
 </body>
+
 </html>
