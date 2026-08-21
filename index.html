@@ -303,7 +303,7 @@
       <!-- PARA REGALAR -->
       <div class="section">
         <p class="section-label">Para regalar</p>
-        <a href="intent://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7#Intent;scheme=https;package=com.android.chrome;end" class="btn">
+        <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" target="_blank" rel="noopener noreferrer" class="btn">
           <div class="btn-icon">
             <svg viewBox="0 0 24 24"><path d="M12 3c1.8 1.8 1.8 4.6 0 7-1.8-2.4-1.8-5.2 0-7z"/><path d="M6.5 6.5c2.4.6 4 2.6 4 5-2.4-.6-4-2.6-4-5z"/><path d="M17.5 6.5c-2.4.6-4 2.6-4 5 2.4-.6 4-2.6 4-5z"/><path d="M12 10v11"/><path d="M7 21c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5"/></svg>
           </div>
@@ -318,7 +318,7 @@
       <!-- PARA EMPRENDER -->
       <div class="section">
         <p class="section-label">Para emprender</p>
-        <a href="intent://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7#Intent;scheme=https;package=com.android.chrome;end" class="btn">
+        <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" target="_blank" rel="noopener noreferrer" class="btn">
           <div class="btn-icon">
             <svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="3.2"/><circle cx="7" cy="17" r="3.2"/><path d="M19 5L5.5 18.5"/><path d="M19 19L5.5 5.5"/></svg>
           </div>
@@ -328,7 +328,7 @@
           </div>
           <span class="btn-arrow">›</span>
         </a>
-        <a href="intent://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr#Intent;scheme=https;package=com.android.chrome;end" class="btn">
+        <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" target="_blank" rel="noopener noreferrer" class="btn">
           <div class="btn-icon" style="background: #DCF1EE;">
             <svg viewBox="0 0 24 24" style="stroke: var(--turquoise);"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><path d="M16 4.3a3.2 3.2 0 010 6.2"/><path d="M21 20c0-3-2-5.2-4.5-5.8"/></svg>
           </div>
@@ -347,9 +347,46 @@
   </div>
 
   <script>
-    // Eliminamos cualquier script de redirección automático innecesario para evitar bugs.
-    console.log("Enlaces configurados para forzar Chrome en Android nativamente.");
-  </script>}
+    (function () {
+      var ua = navigator.userAgent || navigator.vendor || window.opera || '';
+      var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
+      
+      if (!isInAppBrowser) return;
+
+      var botones = document.querySelectorAll('.btn');
+      botones.forEach(function(boton) {
+        boton.addEventListener('click', function(e) {
+          e.preventDefault();
+          var href = boton.getAttribute('href') || '';
+          var targetUrl = '';
+
+          if (/Android/i.test(ua)) {
+            var cleanHref = href.replace(/^https?:\/\//, '');
+            targetUrl = "intent://" + cleanHref + "#Intent;scheme=https;package=com.android.chrome;end";
+          } else if (/iPhone|iPad|iPod/i.test(ua)) {
+            if (href.includes('wa.me')) {
+              var urlParams = new URLSearchParams(href.split('?')[1] || '');
+              var texto = urlParams.get('text') || '';
+              targetUrl = "whatsapp://send?phone=51956744914&text=" + encodeURIComponent(texto);
+            } else if (href.includes('chat.whatsapp.com')) {
+              var codigoGrupo = href.split('/').pop();
+              targetUrl = "whatsapp://chat?code=" + codigoGrupo;
+            }
+          }
+
+          if (targetUrl) {
+            var tempLink = document.createElement('a');
+            tempLink.href = targetUrl;
+            tempLink.target = '_blank';
+            tempLink.style.display = 'none';
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
+          } else {
+            window.location.href = href;
+          }
+        });
+      });
     })();
   </script>
 
