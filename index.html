@@ -16,16 +16,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      /* Paleta sacada de la foto real del puesto: rosa-durazno + dorado cálido + turquesa de acento */
-      --cream:       #FFF6EE; /* fondo, crema cálido como el mantel */
-      --card:        #FFFDF9; /* fondo de tarjetas y botones */
-      --ink:         #3D2418; /* texto principal, marrón oscuro del letrero cursivo */
-      --rose:        #D9718F; /* rosa-durazno de los envoltorios — acento fuerte */
-      --terracotta:  #C98A2B; /* dorado ámbar de la iluminación — acento secundario */
-      --coral:       #E8A15E; /* durazno dorado — bordes */
-      --peach:       #FBE3D3; /* durazno pálido — hover / iconos */
-      --muted:       #9C6B5C; /* texto secundario, marrón rosado */
-      --turquoise:   #4FB3A9; /* toque turquesa de contraste, visto en un par de envolturas */
+      --cream:       #FFF6EE;
+      --card:        #FFFDF9;
+      --ink:         #3D2418;
+      --rose:        #D9718F;
+      --terracotta:  #C98A2B;
+      --coral:       #E8A15E;
+      --peach:       #FBE3D3;
+      --muted:       #9C6B5C;
+      --turquoise:   #4FB3A9;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -66,7 +65,6 @@
       filter: saturate(1.1) brightness(0.97);
     }
 
-    /* Degradado suave y parejo hacia el color de fondo de la página */
     .banner-fade {
       position: absolute;
       inset: 0;
@@ -95,7 +93,6 @@
       z-index: 2;
     }
 
-    /* Redes sociales arriba, debajo del logo: solo ícono, sin texto */
     .social-row-top {
       display: flex;
       justify-content: center;
@@ -125,7 +122,6 @@
     .social-icon:hover  { background: var(--peach); box-shadow: 0 4px 10px rgba(61, 52, 24, 0.14); }
     .social-icon:active { transform: scale(.95); }
 
-    /* SECTIONS */
     .section { margin-bottom: 28px; }
 
     .section-label {
@@ -137,7 +133,6 @@
       margin-bottom: 10px;
     }
 
-    /* BUTTONS */
     .btn {
       display: flex;
       align-items: center;
@@ -186,7 +181,6 @@
     .btn-text span   { display: block; font-size: .72rem; color: var(--muted); }
     .btn-arrow { font-size: 1.1rem; color: var(--rose); }
 
-    /* AVISO DE NAVEGADOR IN-APP (TikTok / IG / FB) */
     .inapp-banner {
       display: none;
       align-items: flex-start;
@@ -203,7 +197,6 @@
     .inapp-banner.show { display: flex; }
     .inapp-banner strong { color: var(--rose); }
 
-    /* FOOTER */
     .footer {
       text-align: center;
       font-size: .68rem;
@@ -257,7 +250,6 @@
   </header>
   <main>
 
-    <!-- AVISO: solo aparece si detecta navegador interno de TikTok/IG/FB -->
     <div class="inapp-banner" id="inappBanner">
       <span>ℹ️</span>
       <span>
@@ -270,7 +262,7 @@
     <!-- PARA REGALAR -->
     <div class="section">
       <p class="section-label">Para regalar</p>
-      <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7"
+      <a href="https://wa.link/yz16ll"
          target="_blank" rel="noopener noreferrer" class="btn">
         <div class="btn-icon">
           <svg viewBox="0 0 24 24"><path d="M12 3c1.8 1.8 1.8 4.6 0 7-1.8-2.4-1.8-5.2 0-7z"/><path d="M6.5 6.5c2.4.6 4 2.6 4 5-2.4-.6-4-2.6-4-5z"/><path d="M17.5 6.5c-2.4.6-4 2.6-4 5 2.4-.6 4-2.6 4-5z"/><path d="M12 10v11"/><path d="M7 21c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5"/></svg>
@@ -286,7 +278,7 @@
     <!-- PARA EMPRENDER -->
     <div class="section">
       <p class="section-label">Para emprender</p>
-      <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7"
+      <a href="https://api.whatsapp.com/send?phone=51956744914&text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7"
          target="_blank" rel="noopener noreferrer" class="btn">
         <div class="btn-icon">
           <svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="3.2"/><circle cx="7" cy="17" r="3.2"/><path d="M19 5L5.5 18.5"/><path d="M19 19L5.5 5.5"/></svg>
@@ -320,27 +312,18 @@
 <script>
   (function () {
     var ua = navigator.userAgent || '';
-    // Detectamos si el usuario viene desde TikTok, Instagram o Facebook
     var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
     
     if (isInAppBrowser) {
-      // 1. Siempre mostramos el banner de aviso por seguridad
       var banner = document.getElementById('inappBanner');
       if (banner) {
         banner.classList.add('show');
       }
 
-      // 2. Si el usuario está en ANDROID, forzamos la salida al navegador Chrome del teléfono
-      // Esto hará que tu página se vuelva a abrir en Chrome y los botones de WhatsApp funcionen al 100% automáticamente
       if (/Android/i.test(ua)) {
-        // Obtenemos la dirección exacta actual de tu GitHub Pages
         var currentUrl = window.location.href.replace(/^https?:\/\//, '');
-        // Creamos un intento de apertura externa para el navegador Chrome de Android
         window.location.href = "intent://" + currentUrl + "#Intent;scheme=https;package=com.android.chrome;end";
       }
-      
-      // Nota para iOS (iPhone): Apple bloquea estos redireccionamientos automáticos, 
-      // por lo que los usuarios de iPhone verán tu hermoso banner instructivo para abrirlo manualmente.
     }
   })();
 </script>
