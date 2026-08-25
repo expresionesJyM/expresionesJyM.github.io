@@ -239,8 +239,23 @@
       color: var(--rose);
     }
 
+    /* AVISO DE RESPALDO (fallback) para cuando el salto automático no funciona */
+    .fallback-note {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      background: var(--peach);
+      border: 1px dashed var(--coral);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: .72rem;
+      color: var(--muted);
+      margin: -2px 0 14px;
+    }
 
-
+    .fallback-note.show {
+      display: flex;
+    }
 
     /* FOOTER */
     .footer {
@@ -299,7 +314,13 @@
               d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
           </svg>
         </a>
-      </div>    <main>
+      </div>
+
+      <p class="fallback-note" id="fallbackNote">
+        ⓘ Si el botón no abre nada, toca los <strong>⋮</strong> arriba y elige "Abrir en el navegador".
+      </p>
+
+      <main>
       <!-- PARA REGALAR -->
       <div class="section">
         <p class="section-label">Para regalar</p>
@@ -350,41 +371,36 @@
     (function () {
       var ua = navigator.userAgent || navigator.vendor || window.opera || '';
       var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
-      
+
       if (!isInAppBrowser) return;
 
+      // Muestra el aviso de respaldo solo dentro de navegadores embebidos,
+      // por si el salto automático falla en algún dispositivo puntual.
+      var nota = document.getElementById('fallbackNote');
+      if (nota) nota.classList.add('show');
+
       var botones = document.querySelectorAll('.btn');
-      botones.forEach(function(boton) {
-        boton.addEventListener('click', function(e) {
+      botones.forEach(function (boton) {
+        boton.addEventListener('click', function (e) {
           e.preventDefault();
           var href = boton.getAttribute('href') || '';
           var targetUrl = '';
 
           if (/Android/i.test(ua)) {
             var cleanHref = href.replace(/^https?:\/\//, '');
-            targetUrl = "intent://" + cleanHref + "#Intent;scheme=https;package=com.android.chrome;end";
+            // Sin "package=" fijo: dejamos que Android resuelva con el navegador
+            // disponible en vez de exigir Chrome específicamente (causa típica
+            // del error "la acción no se pudo completar"). S.browser_fallback_url
+            // actúa como red de seguridad si el intent no puede resolverse.
+            targetUrl = "intent://" + cleanHref +
+              "#Intent;scheme=https;S.browser_fallback_url=" + encodeURIComponent(href) + ";end";
           } else if (/iPhone|iPad|iPod/i.test(ua)) {
-            if (href.includes('wa.me')) {
-              var urlParams = new URLSearchParams(href.split('?')[1] || '');
-              var texto = urlParams.get('text') || '';
-              targetUrl = "whatsapp://send?phone=51956744914&text=" + encodeURIComponent(texto);
-            } else if (href.includes('chat.whatsapp.com')) {
-              var codigoGrupo = href.split('/').pop();
-              targetUrl = "whatsapp://chat?code=" + codigoGrupo;
-            }
+            // Fuerza Safari en vez de saltar directo a whatsapp://.
+            // Una vez en Safari (navegador real), wa.me redirige solo a la app.
+            targetUrl = href.replace(/^https:\/\//, 'x-safari-https://');
           }
 
-          if (targetUrl) {
-            var tempLink = document.createElement('a');
-            tempLink.href = targetUrl;
-            tempLink.target = '_blank';
-            tempLink.style.display = 'none';
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
-          } else {
-            window.location.href = href;
-          }
+          window.location.href = targetUrl || href;
         });
       });
     })();
