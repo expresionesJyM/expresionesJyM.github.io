@@ -239,22 +239,64 @@
       color: var(--rose);
     }
 
-    /* AVISO DE RESPALDO (fallback) para cuando el salto automático no funciona */
-    .fallback-note {
+    /* CTA PRINCIPAL: "abrir en navegador" — la solución más confiable */
+    .escape-cta {
       display: none;
+      flex-direction: column;
       align-items: center;
       gap: 8px;
-      background: var(--peach);
-      border: 1px dashed var(--coral);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: .72rem;
-      color: var(--muted);
-      margin: -2px 0 14px;
+      background: var(--card);
+      border: 2px solid var(--rose);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 18px 0 22px;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(217, 113, 143, 0.18);
     }
 
-    .fallback-note.show {
+    .escape-cta.show {
       display: flex;
+    }
+
+    .escape-cta p {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .escape-cta button {
+      width: 100%;
+      background: var(--rose);
+      border: none;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .escape-cta button:active {
+      transform: scale(.98);
+    }
+
+    .escape-cta .copy-fallback {
+      display: none;
+      align-self: stretch;
+      background: var(--card);
+      border: 1.5px solid var(--coral);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .escape-cta .copy-fallback.show {
+      display: block;
     }
 
     /* FOOTER */
@@ -280,8 +322,14 @@
         </div>
         <img class="logo-img" src="logo2.png" alt="Expresiones" />
       </div>
+      <div class="escape-cta" id="escapeCta">
+        <p>Para que todos los enlaces funcionen bien, abre esta página en tu navegador 👇</p>
+        <button type="button" id="openBrowserBtn">🌐 Abrir en mi navegador</button>
+        <button type="button" class="copy-fallback" id="copyLinkBtn">Copiar enlace de esta página</button>
+      </div>
+
       <div class="social-row-top">
-        <a href="https://www.tiktok.com/@garden_eternal" target="_blank" rel="noopener noreferrer" class="social-icon"
+        <a href="https://www.tiktok.com/@expresiones_eternas" target="_blank" rel="noopener noreferrer" class="social-icon"
           aria-label="TikTok">
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -289,7 +337,7 @@
               fill="#3D2418" />
           </svg>
         </a>
-        <a href="https://www.instagram.com/gardeneternal_jm/" target="_blank" rel="noopener noreferrer"
+        <a href="https://www.instagram.com/expreciones_eternas" target="_blank" rel="noopener noreferrer"
           class="social-icon" aria-label="Instagram">
           <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -307,7 +355,7 @@
             <circle cx="33" cy="15" r="1.8" fill="#fff" />
           </svg>
         </a>
-        <a href="https://www.facebook.com/people/Garden-Rosas-Eternas/61574939932181/?locale=es_LA" target="_blank"
+        <a href="https://www.facebook.com/share/1DPNxAcHdv/" target="_blank"
           rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path fill="#1877F2"
@@ -315,10 +363,6 @@
           </svg>
         </a>
       </div>
-
-      <p class="fallback-note" id="fallbackNote">
-        ⓘ Si el botón no abre nada, toca los <strong>⋮</strong> arriba y elige "Abrir en el navegador".
-      </p>
 
       <main>
       <!-- PARA REGALAR -->
@@ -374,33 +418,68 @@
 
       if (!isInAppBrowser) return;
 
-      // Muestra el aviso de respaldo solo dentro de navegadores embebidos,
-      // por si el salto automático falla en algún dispositivo puntual.
-      var nota = document.getElementById('fallbackNote');
-      if (nota) nota.classList.add('show');
+      var isAndroid = /Android/i.test(ua);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua);
 
+      // Construye la URL de "escape" hacia el navegador real para un href dado.
+      function buildEscapeUrl(href) {
+        if (isAndroid) {
+          var cleanHref = href.replace(/^https?:\/\//, '');
+          // Sin "package=" fijo: dejamos que Android resuelva con el navegador
+          // disponible, en vez de exigir Chrome específicamente.
+          return "intent://" + cleanHref +
+            "#Intent;scheme=https;S.browser_fallback_url=" + encodeURIComponent(href) + ";end";
+        }
+        if (isIOS) {
+          // Fuerza Safari en vez de quedarse en el WebView.
+          return href.replace(/^https:\/\//, 'x-safari-https://');
+        }
+        return href;
+      }
+
+      // ---- CTA principal: "Abrir en mi navegador" ----
+      var cta = document.getElementById('escapeCta');
+      if (cta) cta.classList.add('show');
+
+      var openBtn = document.getElementById('openBrowserBtn');
+      var copyBtn = document.getElementById('copyLinkBtn');
+
+      if (openBtn) {
+        openBtn.addEventListener('click', function () {
+          var pageUrl = window.location.href;
+          window.location.href = buildEscapeUrl(pageUrl);
+          // Si en ~1.2s seguimos en la misma pantalla, probablemente el salto
+          // fue bloqueado: mostramos el respaldo de copiar enlace.
+          setTimeout(function () {
+            if (copyBtn) copyBtn.classList.add('show');
+          }, 1200);
+        });
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          var pageUrl = window.location.href;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(pageUrl).then(function () {
+              copyBtn.textContent = '¡Copiado! Pégalo en Chrome/Safari';
+              setTimeout(function () { copyBtn.textContent = 'Copiar enlace de esta página'; }, 2500);
+            }).catch(function () {
+              window.prompt('Copia este enlace manualmente:', pageUrl);
+            });
+          } else {
+            window.prompt('Copia este enlace manualmente:', pageUrl);
+          }
+        });
+      }
+
+      // ---- Respaldo por si el usuario toca un botón de WhatsApp directo,
+      // sin pasar primero por el CTA de arriba ----
       var botones = document.querySelectorAll('.btn');
       botones.forEach(function (boton) {
         boton.addEventListener('click', function (e) {
           e.preventDefault();
           var href = boton.getAttribute('href') || '';
-          var targetUrl = '';
-
-          if (/Android/i.test(ua)) {
-            var cleanHref = href.replace(/^https?:\/\//, '');
-            // Sin "package=" fijo: dejamos que Android resuelva con el navegador
-            // disponible en vez de exigir Chrome específicamente (causa típica
-            // del error "la acción no se pudo completar"). S.browser_fallback_url
-            // actúa como red de seguridad si el intent no puede resolverse.
-            targetUrl = "intent://" + cleanHref +
-              "#Intent;scheme=https;S.browser_fallback_url=" + encodeURIComponent(href) + ";end";
-          } else if (/iPhone|iPad|iPod/i.test(ua)) {
-            // Fuerza Safari en vez de saltar directo a whatsapp://.
-            // Una vez en Safari (navegador real), wa.me redirige solo a la app.
-            targetUrl = href.replace(/^https:\/\//, 'x-safari-https://');
-          }
-
-          window.location.href = targetUrl || href;
+          window.location.href = buildEscapeUrl(href) || href;
         });
       });
     })();
