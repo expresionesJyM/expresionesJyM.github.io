@@ -434,9 +434,9 @@
       <!-- PARA REGALAR -->
       <div class="section">
         <p class="section-label">Para regalar</p>
-        <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" target="_blank" rel="noopener noreferrer" class="btn"
+        <a href="https://api.whatsapp.com/send?phone=51956744914&amp;text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" target="_blank" rel="noopener noreferrer" class="btn"
           data-whatsapp="whatsapp://send?phone=51956744914&amp;text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7"
-          data-fallback="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7">
+          data-fallback="https://api.whatsapp.com/send?phone=51956744914&amp;text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7">
           <div class="btn-icon" aria-hidden="true">
             <i class="fa-solid fa-gift" aria-hidden="true"></i>
           </div>
@@ -451,9 +451,9 @@
       <!-- PARA EMPRENDER -->
       <div class="section">
         <p class="section-label">Para emprender</p>
-        <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" target="_blank" rel="noopener noreferrer" class="btn"
+        <a href="https://api.whatsapp.com/send?phone=51956744914&amp;text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" target="_blank" rel="noopener noreferrer" class="btn"
           data-whatsapp="whatsapp://send?phone=51956744914&amp;text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7"
-          data-fallback="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7">
+          data-fallback="https://api.whatsapp.com/send?phone=51956744914&amp;text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7">
           <div class="btn-icon btn-icon--materials" aria-hidden="true">
             <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
           </div>
@@ -495,7 +495,7 @@
       <p>No es un error de esta página. TikTok bloqueó la salida hacia otra aplicación.</p>
       <p class="fallback-tip"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i> Toca los tres puntos de arriba y elige “Abrir en navegador”.</p>
       <button class="fallback-action" id="shareFallback" type="button">
-        <i class="fa-solid fa-share-nodes" aria-hidden="true"></i> Compartir enlace
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Probar enlace web
       </button>
       <button class="fallback-copy" id="copyFallback" type="button">
         <i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar enlace
@@ -506,8 +506,9 @@
   <script>
     (function () {
       var ua = navigator.userAgent || navigator.vendor || window.opera || '';
-      var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
-      var isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
+      var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua) ||
+        navigator.maxTouchPoints > 0 ||
+        (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
 
       var toast = document.getElementById('toast');
       var sheet = document.getElementById('fallbackSheet');
@@ -551,13 +552,7 @@
       });
 
       if (shareFallback) shareFallback.addEventListener('click', function () {
-        if (navigator.share) {
-          navigator.share({ title: 'Abrir en WhatsApp', url: currentFallback }).catch(function () {});
-        } else {
-          copyText(currentFallback).then(function () {
-            showToast('Enlace copiado');
-          });
-        }
+        window.location.href = currentFallback;
       });
 
       if (copyFallback) copyFallback.addEventListener('click', function () {
@@ -566,7 +561,7 @@
         });
       });
 
-      if (!isInAppBrowser || !isMobile) return;
+      if (!isMobile) return;
 
       // En navegadores internos intentamos entregar el enlace directamente a
       // la aplicación de WhatsApp. El enlace HTTPS original queda como respaldo.
@@ -576,19 +571,16 @@
           e.preventDefault();
           var appUrl = el.getAttribute('data-whatsapp');
           var fallbackUrl = el.getAttribute('data-fallback') || el.href;
-          var pageWasHidden = false;
-
-          function markHidden() {
-            if (document.hidden) pageWasHidden = true;
-          }
-
-          document.addEventListener('visibilitychange', markHidden, { once: true });
+          // Mostramos primero el respaldo. Si WhatsApp abre correctamente, la
+          // página queda oculta y retiramos el panel; si TikTok bloquea el
+          // esquema, el usuario permanece aquí y ya tiene instrucciones.
+          showFallback(fallbackUrl);
           window.location.href = appUrl;
-
-          window.setTimeout(function () {
-            if (!pageWasHidden && !document.hidden) showFallback(fallbackUrl);
-          }, 1400);
         });
+      });
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) hideFallback();
       });
     })();
   </script>
