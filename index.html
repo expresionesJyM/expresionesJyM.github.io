@@ -323,15 +323,16 @@
       </div>
       <div class="social-row-top">
         <a href="https://www.tiktok.com/@expresiones_eternas" target="_blank" rel="noopener noreferrer" class="social-icon"
-          aria-label="TikTok">
+          aria-label="TikTok" data-copy="https://www.tiktok.com/@expresiones_eternas">
           <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
         </a>
         <a href="https://www.instagram.com/expreciones_eternas" target="_blank" rel="noopener noreferrer"
-          class="social-icon" aria-label="Instagram">
+          class="social-icon" aria-label="Instagram" data-copy="https://www.instagram.com/expreciones_eternas">
           <i class="fa-brands fa-instagram" aria-hidden="true"></i>
         </a>
         <a href="https://www.facebook.com/share/1DPNxAcHdv/" target="_blank"
-          rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+          rel="noopener noreferrer" class="social-icon" aria-label="Facebook"
+          data-copy="https://www.facebook.com/share/1DPNxAcHdv/">
           <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
         </a>
       </div>
@@ -341,7 +342,7 @@
       <div class="section">
         <p class="section-label">Para regalar</p>
         <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" target="_blank" rel="noopener noreferrer" class="btn"
-          data-copy="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" data-copy-type="link">
+          data-copy="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7">
           <div class="btn-icon" aria-hidden="true">
             <i class="fa-solid fa-spa" aria-hidden="true"></i>
           </div>
@@ -357,7 +358,7 @@
       <div class="section">
         <p class="section-label">Para emprender</p>
         <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" target="_blank" rel="noopener noreferrer" class="btn"
-          data-copy="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" data-copy-type="link">
+          data-copy="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7">
           <div class="btn-icon btn-icon--materials" aria-hidden="true">
             <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
           </div>
@@ -368,7 +369,7 @@
           <span class="btn-arrow">›</span>
         </a>
         <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" target="_blank" rel="noopener noreferrer" class="btn"
-          data-copy="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" data-copy-type="link">
+          data-copy="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr">
           <div class="btn-icon btn-icon--community" aria-hidden="true">
             <i class="fa-solid fa-people-group" aria-hidden="true"></i>
           </div>
@@ -410,10 +411,31 @@
 
       function copyText(text) {
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          return navigator.clipboard.writeText(text);
+          return navigator.clipboard.writeText(text).catch(function () {
+            return copyTextFallback(text);
+          });
         }
-        // Respaldo para navegadores muy antiguos sin Clipboard API
-        window.prompt('Copia esto manualmente:', text);
+        return copyTextFallback(text);
+      }
+
+      function copyTextFallback(text) {
+        var input = document.createElement('textarea');
+        input.value = text;
+        input.setAttribute('readonly', '');
+        input.style.position = 'fixed';
+        input.style.opacity = '0';
+        document.body.appendChild(input);
+        input.select();
+        var copied = false;
+        try {
+          copied = document.execCommand('copy');
+        } catch (error) {
+          copied = false;
+        }
+        input.remove();
+
+        if (copied) return Promise.resolve();
+        window.prompt('Copia este enlace:', text);
         return Promise.resolve();
       }
 
@@ -424,13 +446,10 @@
         el.addEventListener('click', function (e) {
           e.preventDefault();
           var text = el.getAttribute('data-copy');
-          var type = el.getAttribute('data-copy-type');
           copyText(text).then(function () {
-            if (type === 'phone') {
-              showToast('📋 ¡Número copiado! Abre WhatsApp y pégalo en “Nuevo chat”');
-            } else {
-              showToast('🔗 ¡Enlace copiado! Pégalo en Chrome o Safari para abrirlo');
-            }
+            showToast('🔗 ¡Enlace copiado! Pégalo en tu navegador para abrirlo');
+          }).catch(function () {
+            showToast('No se pudo copiar. Mantén presionado el enlace para copiarlo');
           });
         });
       });
