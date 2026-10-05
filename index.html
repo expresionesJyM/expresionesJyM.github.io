@@ -298,6 +298,139 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    /* Asistente flotante de Jashy: compacto, accesible y fácil de minimizar */
+    .jashy-widget {
+      position: fixed;
+      right: max(12px, calc((100vw - 420px) / 2 + 12px));
+      bottom: max(14px, env(safe-area-inset-bottom));
+      z-index: 50;
+      display: flex;
+      align-items: flex-end;
+      max-width: calc(100vw - 24px);
+      pointer-events: none;
+    }
+
+    .jashy-avatar-button {
+      position: relative;
+      z-index: 2;
+      width: 74px;
+      flex: 0 0 74px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      pointer-events: auto;
+      animation: jashy-float 5s ease-in-out infinite;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .jashy-avatar-button img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 4px 6px rgba(61, 36, 24, .16));
+    }
+
+    .jashy-chat {
+      position: relative;
+      width: 178px;
+      max-width: calc(100vw - 90px);
+      margin: 0 -6px 17px 0;
+      padding: 10px 11px 9px;
+      border: 1px solid rgba(201, 138, 43, .2);
+      border-radius: 15px 15px 5px 15px;
+      background: rgba(255, 253, 249, .78);
+      box-shadow: 0 5px 17px rgba(61, 36, 24, .11);
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      color: var(--ink);
+      pointer-events: auto;
+      transform-origin: bottom right;
+      animation: jashy-pop .35s ease-out both;
+    }
+
+    .jashy-chat::after {
+      position: absolute;
+      right: 20px;
+      bottom: -8px;
+      width: 12px;
+      height: 12px;
+      content: "";
+      border-right: 1px solid rgba(201, 138, 43, .2);
+      border-bottom: 1px solid rgba(201, 138, 43, .2);
+      background: rgba(255, 253, 249, .78);
+      transform: rotate(45deg);
+    }
+
+    .jashy-chat-close {
+      position: absolute;
+      top: 6px;
+      right: 7px;
+      display: grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(235, 224, 214, .78);
+      color: var(--muted);
+      font-size: .7rem;
+      cursor: pointer;
+    }
+
+    .jashy-name {
+      display: block;
+      margin: 0 22px 4px 0;
+      color: var(--rose);
+      font-size: .58rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .jashy-message {
+      min-height: 0;
+      margin: 0;
+      padding-right: 3px;
+      font-size: .69rem;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: opacity .2s ease;
+    }
+
+    .jashy-message.is-changing {
+      opacity: .25;
+    }
+
+    .jashy-widget.is-minimized .jashy-chat {
+      display: none;
+    }
+
+    .jashy-widget.is-minimized .jashy-avatar-button {
+      width: 60px;
+      flex-basis: 60px;
+    }
+
+    @keyframes jashy-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    @keyframes jashy-pop {
+      from { opacity: 0; transform: scale(.94) translateY(5px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @media (max-width: 360px) {
+      .jashy-avatar-button { width: 64px; flex-basis: 64px; }
+      .jashy-chat { width: 168px; max-width: calc(100vw - 82px); padding: 9px 10px; }
+      .jashy-message { font-size: .66rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .jashy-avatar-button, .jashy-chat { animation: none; }
+    }
+
     /* FOOTER */
     .footer {
       text-align: center;
@@ -321,7 +454,7 @@
         </div>
         <img class="logo-img" src="logo2.png" alt="Expresiones" />
       </div>
-      <div class="social-row-top">
+      <div class="social-row-top" id="redes">
         <a href="https://www.tiktok.com/@expresiones_eternas" target="_blank" rel="noopener noreferrer" class="social-icon"
           aria-label="TikTok" data-copy="https://www.tiktok.com/@expresiones_eternas">
           <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
@@ -389,6 +522,19 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <aside class="jashy-widget" id="jashyWidget" aria-label="Ayuda de Jashy">
+    <div class="jashy-chat" id="jashyChat">
+      <button class="jashy-chat-close" id="jashyClose" type="button" aria-label="Minimizar a Jashy">
+        <i class="fa-solid fa-minus" aria-hidden="true"></i>
+      </button>
+      <span class="jashy-name">Jashy te ayuda</span>
+      <p class="jashy-message" id="jashyMessage" aria-live="polite" aria-atomic="true">¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!</p>
+    </div>
+    <button class="jashy-avatar-button" id="jashyAvatar" type="button" aria-label="Abrir los mensajes de Jashy" aria-expanded="true">
+      <img src="Image/jashy.png" alt="Jashy saludando" />
+    </button>
+  </aside>
+
   <script>
     (function () {
       var ua = navigator.userAgent || navigator.vendor || window.opera || '';
@@ -439,20 +585,62 @@
         return Promise.resolve();
       }
 
-      // TikTok puede bloquear los enlaces externos; dentro de su navegador
-      // copiamos el destino y mostramos una confirmación breve.
-      var copiables = document.querySelectorAll('[data-copy]');
-      copiables.forEach(function (el) {
-        el.addEventListener('click', function (e) {
-          e.preventDefault();
-          var text = el.getAttribute('data-copy');
-          copyText(text).then(function () {
-            showToast('🔗 ¡Enlace copiado! Pégalo en tu navegador para abrirlo');
-          }).catch(function () {
-            showToast('No se pudo copiar. Mantén presionado el enlace para copiarlo');
-          });
+      // Intercepta también el enlace de Jashy aunque su destino vaya cambiando.
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('[data-copy]');
+        if (!el) return;
+        e.preventDefault();
+        var text = el.getAttribute('data-copy');
+        copyText(text).then(function () {
+          showToast('🔗 ¡Enlace copiado! Pégalo en tu navegador para abrirlo');
+        }).catch(function () {
+          showToast('No se pudo copiar. Mantén presionado el enlace para copiarlo');
         });
       });
+    })();
+
+    (function () {
+      var widget = document.getElementById('jashyWidget');
+      var avatar = document.getElementById('jashyAvatar');
+      var close = document.getElementById('jashyClose');
+      var messageNode = document.getElementById('jashyMessage');
+      var messages = [
+        '¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!',
+        '¿Buscas un regalo? Toca “Pedir mi ramo” 🌸',
+        '¿Te gusta crear? Toca “Comprar materiales” ✨',
+        'Toca “Comunidad gratis” y aprendamos juntas 💚',
+        'Síguenos en nuestras redes para ver más ideas 💐'
+      ];
+      var currentMessage = 0;
+
+      function showMessage(index) {
+        messageNode.classList.add('is-changing');
+        window.setTimeout(function () {
+          messageNode.textContent = messages[index];
+          messageNode.classList.remove('is-changing');
+        }, 180);
+      }
+
+      function showRandomMessage() {
+        var nextMessage;
+        do {
+          nextMessage = Math.floor(Math.random() * messages.length);
+        } while (messages.length > 1 && nextMessage === currentMessage);
+        currentMessage = nextMessage;
+        showMessage(currentMessage);
+      }
+
+      avatar.addEventListener('click', function () {
+        var minimized = widget.classList.toggle('is-minimized');
+        avatar.setAttribute('aria-expanded', String(!minimized));
+      });
+
+      close.addEventListener('click', function () {
+        widget.classList.add('is-minimized');
+        avatar.setAttribute('aria-expanded', 'false');
+      });
+
+      window.setInterval(showRandomMessage, 9000);
     })();
   </script>
 
