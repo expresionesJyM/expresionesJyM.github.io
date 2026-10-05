@@ -66,33 +66,21 @@
       var avatar = document.getElementById('jashyAvatar');
       var close = document.getElementById('jashyClose');
       var messageNode = document.getElementById('jashyMessage');
-      var cta = document.getElementById('jashyCta');
       var messages = [
         {
-          text: '¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!',
-          label: 'Ver nuestros enlaces', href: '#redes'
+          text: '¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!'
         },
         {
-          text: '¿Buscas un regalo especial? Te ayudamos a crear tu ramo 🌸',
-          label: 'Pedir mi ramo',
-          href: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7',
-          copy: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7'
+          text: '¿Buscas un regalo especial? Te ayudamos a crear tu ramo 🌸'
         },
         {
-          text: '¿Te gusta crear? Tenemos materiales para que empieces a emprender ✨',
-          label: 'Ver materiales',
-          href: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7',
-          copy: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7'
+          text: '¿Te gusta crear? Tenemos materiales para que empieces a emprender ✨'
         },
         {
-          text: 'Únete gratis a nuestra comunidad y aprendamos juntas 💚',
-          label: 'Unirme gratis',
-          href: 'https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr',
-          copy: 'https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr'
+          text: 'Únete a nuestra comunidad y aprendamos juntas 💚'
         },
         {
-          text: 'Síguenos en nuestras redes para ver ramos, ideas y novedades 💐',
-          label: 'Ver redes', href: '#redes'
+          text: 'Síguenos en nuestras redes para ver ramos, ideas y novedades 💐'
         }
       ];
       var currentMessage = 0;
@@ -102,13 +90,6 @@
         messageNode.classList.add('is-changing');
         window.setTimeout(function () {
           messageNode.textContent = item.text;
-          cta.querySelector('span').textContent = item.label;
-          cta.href = item.href;
-          if (item.copy) {
-            cta.setAttribute('data-copy', item.copy);
-          } else {
-            cta.removeAttribute('data-copy');
-          }
           messageNode.classList.remove('is-changing');
         }, 180);
       }
