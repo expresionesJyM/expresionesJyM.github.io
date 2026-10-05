@@ -196,12 +196,16 @@
       color: var(--ink);
       font-family: 'Nunito', sans-serif;
       font-size: .88rem;
-      transition: background .15s, transform .1s;
+      transition: background .15s, transform .15s, box-shadow .15s, border-color .15s;
       margin-bottom: 8px;
+      box-shadow: 0 3px 10px rgba(61, 36, 24, .06);
     }
 
     .btn:hover {
       background: var(--peach);
+      border-color: var(--rose);
+      box-shadow: 0 7px 18px rgba(61, 36, 24, .11);
+      transform: translateY(-1px);
     }
 
     .btn:active {
@@ -209,27 +213,28 @@
     }
 
     .btn-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: linear-gradient(145deg, #FFF0E7, #FBD7D8);
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #FFE8EE, #F8CAD6);
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: inset 0 0 0 1px rgba(217, 113, 143, .12);
+      box-shadow: inset 0 0 0 1px rgba(217, 113, 143, .14), 0 4px 10px rgba(217, 113, 143, .14);
     }
 
     .btn-icon i {
       color: var(--rose);
-      font-size: 22px;
+      font-size: 23px;
       line-height: 1;
+      filter: drop-shadow(0 1px 1px rgba(61, 36, 24, .08));
     }
 
     .btn-icon--materials {
-      background: linear-gradient(145deg, #FFF1D9, #FBE1C3);
-      box-shadow: inset 0 0 0 1px rgba(201, 138, 43, .14);
+      background: linear-gradient(145deg, #FFF3D9, #F8D9A8);
+      box-shadow: inset 0 0 0 1px rgba(201, 138, 43, .16), 0 4px 10px rgba(201, 138, 43, .13);
     }
 
     .btn-icon--materials i {
@@ -237,12 +242,12 @@
     }
 
     .btn-icon--community {
-      background: linear-gradient(145deg, #E5F6F3, #D2EFEB);
-      box-shadow: inset 0 0 0 1px rgba(79, 179, 169, .16);
+      background: linear-gradient(145deg, #E2F9EB, #C5F0D7);
+      box-shadow: inset 0 0 0 1px rgba(37, 211, 102, .16), 0 4px 10px rgba(37, 211, 102, .12);
     }
 
     .btn-icon--community i {
-      color: #338F86;
+      color: #128C4B;
     }
 
     .btn-text {
@@ -293,105 +298,6 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Respaldo cuando TikTok no permite entregar el enlace a WhatsApp */
-    .fallback-sheet[hidden] {
-      display: none;
-    }
-
-    .fallback-sheet {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      background: rgba(38, 22, 16, .45);
-      padding: 16px;
-    }
-
-    .fallback-card {
-      position: relative;
-      width: min(100%, 390px);
-      padding: 26px 20px 20px;
-      border-radius: 24px;
-      background: var(--card);
-      box-shadow: 0 18px 50px rgba(38, 22, 16, .28);
-      text-align: center;
-    }
-
-    .fallback-close {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      width: 34px;
-      height: 34px;
-      border: 0;
-      border-radius: 50%;
-      background: var(--peach);
-      color: var(--ink);
-      cursor: pointer;
-    }
-
-    .fallback-icon {
-      width: 54px;
-      height: 54px;
-      margin: 0 auto 12px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: #DCF8E8;
-      color: #168C4A;
-      font-size: 26px;
-    }
-
-    .fallback-card h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-    }
-
-    .fallback-card p {
-      color: var(--muted);
-      font-size: .82rem;
-      line-height: 1.5;
-      margin: 0 auto 16px;
-    }
-
-    .fallback-tip {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 12px;
-      margin-bottom: 14px;
-      border-radius: 12px;
-      background: var(--peach);
-      color: var(--ink) !important;
-      font-weight: 600;
-    }
-
-    .fallback-action,
-    .fallback-copy {
-      width: 100%;
-      min-height: 46px;
-      border-radius: 13px;
-      font: 700 .82rem 'Nunito', sans-serif;
-      cursor: pointer;
-    }
-
-    .fallback-action {
-      border: 0;
-      background: #1FAF62;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .fallback-copy {
-      border: 1.5px solid var(--coral);
-      background: transparent;
-      color: var(--ink);
-    }
-
     /* FOOTER */
     .footer {
       text-align: center;
@@ -434,11 +340,10 @@
       <!-- PARA REGALAR -->
       <div class="section">
         <p class="section-label">Para regalar</p>
-        <a href="https://api.whatsapp.com/send?phone=51956744914&amp;text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" target="_blank" rel="noopener noreferrer" class="btn"
-          data-whatsapp="whatsapp://send?phone=51956744914&amp;text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7"
-          data-fallback="https://api.whatsapp.com/send?phone=51956744914&amp;text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7">
+        <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" target="_blank" rel="noopener noreferrer" class="btn"
+          data-copy="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" data-copy-type="link">
           <div class="btn-icon" aria-hidden="true">
-            <i class="fa-solid fa-gift" aria-hidden="true"></i>
+            <i class="fa-solid fa-spa" aria-hidden="true"></i>
           </div>
           <div class="btn-text">
             <strong>Pedir mi ramo</strong>
@@ -451,9 +356,8 @@
       <!-- PARA EMPRENDER -->
       <div class="section">
         <p class="section-label">Para emprender</p>
-        <a href="https://api.whatsapp.com/send?phone=51956744914&amp;text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" target="_blank" rel="noopener noreferrer" class="btn"
-          data-whatsapp="whatsapp://send?phone=51956744914&amp;text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7"
-          data-fallback="https://api.whatsapp.com/send?phone=51956744914&amp;text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7">
+        <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" target="_blank" rel="noopener noreferrer" class="btn"
+          data-copy="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" data-copy-type="link">
           <div class="btn-icon btn-icon--materials" aria-hidden="true">
             <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
           </div>
@@ -464,8 +368,7 @@
           <span class="btn-arrow">›</span>
         </a>
         <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" target="_blank" rel="noopener noreferrer" class="btn"
-          data-whatsapp="whatsapp://chat?code=CMHPDhzzyfnKDMrn21aZUr"
-          data-fallback="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr">
+          data-copy="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" data-copy-type="link">
           <div class="btn-icon btn-icon--community" aria-hidden="true">
             <i class="fa-solid fa-people-group" aria-hidden="true"></i>
           </div>
@@ -485,38 +388,15 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <div class="fallback-sheet" id="fallbackSheet" hidden>
-    <div class="fallback-card" role="dialog" aria-modal="true" aria-labelledby="fallbackTitle">
-      <button class="fallback-close" id="fallbackClose" type="button" aria-label="Cerrar">
-        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-      </button>
-      <div class="fallback-icon"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></div>
-      <h2 id="fallbackTitle">TikTok no dejó abrir WhatsApp</h2>
-      <p>No es un error de esta página. TikTok bloqueó la salida hacia otra aplicación.</p>
-      <p class="fallback-tip"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i> Toca los tres puntos de arriba y elige “Abrir en navegador”.</p>
-      <button class="fallback-action" id="shareFallback" type="button">
-        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Probar enlace web
-      </button>
-      <button class="fallback-copy" id="copyFallback" type="button">
-        <i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar enlace
-      </button>
-    </div>
-  </div>
-
   <script>
     (function () {
       var ua = navigator.userAgent || navigator.vendor || window.opera || '';
-      var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua) ||
-        navigator.maxTouchPoints > 0 ||
-        (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+      var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
+
+      if (!isInAppBrowser) return;
 
       var toast = document.getElementById('toast');
-      var sheet = document.getElementById('fallbackSheet');
-      var closeSheet = document.getElementById('fallbackClose');
-      var shareFallback = document.getElementById('shareFallback');
-      var copyFallback = document.getElementById('copyFallback');
       var toastTimer = null;
-      var currentFallback = '';
 
       function showToast(msg) {
         if (!toast) return;
@@ -537,50 +417,22 @@
         return Promise.resolve();
       }
 
-      function showFallback(url) {
-        currentFallback = url;
-        if (sheet) sheet.hidden = false;
-      }
-
-      function hideFallback() {
-        if (sheet) sheet.hidden = true;
-      }
-
-      if (closeSheet) closeSheet.addEventListener('click', hideFallback);
-      if (sheet) sheet.addEventListener('click', function (e) {
-        if (e.target === sheet) hideFallback();
-      });
-
-      if (shareFallback) shareFallback.addEventListener('click', function () {
-        window.location.href = currentFallback;
-      });
-
-      if (copyFallback) copyFallback.addEventListener('click', function () {
-        copyText(currentFallback).then(function () {
-          showToast('Enlace copiado. Pégalo en Chrome o Safari');
-        });
-      });
-
-      if (!isMobile) return;
-
-      // En navegadores internos intentamos entregar el enlace directamente a
-      // la aplicación de WhatsApp. El enlace HTTPS original queda como respaldo.
-      var whatsappLinks = document.querySelectorAll('[data-whatsapp]');
-      whatsappLinks.forEach(function (el) {
+      // TikTok puede bloquear los enlaces externos; dentro de su navegador
+      // copiamos el destino y mostramos una confirmación breve.
+      var copiables = document.querySelectorAll('[data-copy]');
+      copiables.forEach(function (el) {
         el.addEventListener('click', function (e) {
           e.preventDefault();
-          var appUrl = el.getAttribute('data-whatsapp');
-          var fallbackUrl = el.getAttribute('data-fallback') || el.href;
-          // Mostramos primero el respaldo. Si WhatsApp abre correctamente, la
-          // página queda oculta y retiramos el panel; si TikTok bloquea el
-          // esquema, el usuario permanece aquí y ya tiene instrucciones.
-          showFallback(fallbackUrl);
-          window.location.href = appUrl;
+          var text = el.getAttribute('data-copy');
+          var type = el.getAttribute('data-copy-type');
+          copyText(text).then(function () {
+            if (type === 'phone') {
+              showToast('📋 ¡Número copiado! Abre WhatsApp y pégalo en “Nuevo chat”');
+            } else {
+              showToast('🔗 ¡Enlace copiado! Pégalo en Chrome o Safari para abrirlo');
+            }
+          });
         });
-      });
-
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) hideFallback();
       });
     })();
   </script>
