@@ -333,16 +333,14 @@
 
     .jashy-chat {
       position: relative;
-      width: 178px;
-      max-width: calc(100vw - 90px);
-      margin: 0 -6px 17px 0;
-      padding: 10px 11px 9px;
+      width: 218px;
+      max-width: calc(100vw - 102px);
+      margin: 0 -7px 20px 0;
+      padding: 12px 13px 11px;
       border: 1px solid rgba(201, 138, 43, .2);
-      border-radius: 15px 15px 5px 15px;
-      background: rgba(255, 253, 249, .78);
-      box-shadow: 0 5px 17px rgba(61, 36, 24, .11);
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
+      border-radius: 18px 18px 5px 18px;
+      background: rgba(255, 253, 249, .98);
+      box-shadow: 0 8px 26px rgba(61, 36, 24, .16);
       color: var(--ink);
       pointer-events: auto;
       transform-origin: bottom right;
@@ -353,12 +351,12 @@
       position: absolute;
       right: 20px;
       bottom: -8px;
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       content: "";
       border-right: 1px solid rgba(201, 138, 43, .2);
       border-bottom: 1px solid rgba(201, 138, 43, .2);
-      background: rgba(255, 253, 249, .78);
+      background: var(--card);
       transform: rotate(45deg);
     }
 
@@ -372,7 +370,7 @@
       place-items: center;
       border: 0;
       border-radius: 50%;
-      background: rgba(235, 224, 214, .78);
+      background: #FFF0E7;
       color: var(--muted);
       font-size: .7rem;
       cursor: pointer;
@@ -382,17 +380,16 @@
       display: block;
       margin: 0 22px 4px 0;
       color: var(--rose);
-      font-size: .58rem;
+      font-size: .66rem;
       font-weight: 800;
       letter-spacing: .04em;
       text-transform: uppercase;
     }
 
     .jashy-message {
-      min-height: 0;
-      margin: 0;
-      padding-right: 3px;
-      font-size: .69rem;
+      min-height: 34px;
+      margin: 0 0 9px;
+      font-size: .76rem;
       font-weight: 600;
       line-height: 1.4;
       transition: opacity .2s ease;
@@ -400,6 +397,26 @@
 
     .jashy-message.is-changing {
       opacity: .25;
+    }
+
+    .jashy-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 30px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: var(--rose);
+      color: #fff;
+      font-size: .69rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .jashy-cta:hover {
+      background: #C65F7E;
+      transform: translateY(-1px);
     }
 
     .jashy-widget.is-minimized .jashy-chat {
@@ -423,8 +440,8 @@
 
     @media (max-width: 360px) {
       .jashy-avatar-button { width: 64px; flex-basis: 64px; }
-      .jashy-chat { width: 168px; max-width: calc(100vw - 82px); padding: 9px 10px; }
-      .jashy-message { font-size: .66rem; }
+      .jashy-chat { width: 205px; max-width: calc(100vw - 90px); padding: 11px 12px; }
+      .jashy-message { font-size: .72rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -527,8 +544,11 @@
       <button class="jashy-chat-close" id="jashyClose" type="button" aria-label="Minimizar a Jashy">
         <i class="fa-solid fa-minus" aria-hidden="true"></i>
       </button>
-      <span class="jashy-name">Jashy te ayuda</span>
+      <span class="jashy-name">Jashy · aquí para ayudarte</span>
       <p class="jashy-message" id="jashyMessage" aria-live="polite" aria-atomic="true">¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!</p>
+      <a class="jashy-cta" id="jashyCta" href="#redes">
+        <span>Ver nuestros enlaces</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
     </div>
     <button class="jashy-avatar-button" id="jashyAvatar" type="button" aria-label="Abrir los mensajes de Jashy" aria-expanded="true">
       <img src="Image/jashy.png" alt="Jashy saludando" />
@@ -604,19 +624,49 @@
       var avatar = document.getElementById('jashyAvatar');
       var close = document.getElementById('jashyClose');
       var messageNode = document.getElementById('jashyMessage');
+      var cta = document.getElementById('jashyCta');
       var messages = [
-        '¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!',
-        '¿Buscas un regalo? Toca “Pedir mi ramo” 🌸',
-        '¿Te gusta crear? Toca “Comprar materiales” ✨',
-        'Toca “Comunidad gratis” y aprendamos juntas 💚',
-        'Síguenos en nuestras redes para ver más ideas 💐'
+        {
+          text: '¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!',
+          label: 'Ver nuestros enlaces', href: '#redes'
+        },
+        {
+          text: '¿Buscas un regalo especial? Te ayudamos a crear tu ramo 🌸',
+          label: 'Pedir mi ramo',
+          href: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7',
+          copy: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7'
+        },
+        {
+          text: '¿Te gusta crear? Tenemos materiales para que empieces a emprender ✨',
+          label: 'Ver materiales',
+          href: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7',
+          copy: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7'
+        },
+        {
+          text: 'Únete gratis a nuestra comunidad y aprendamos juntas 💚',
+          label: 'Unirme gratis',
+          href: 'https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr',
+          copy: 'https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr'
+        },
+        {
+          text: 'Síguenos en nuestras redes para ver ramos, ideas y novedades 💐',
+          label: 'Ver redes', href: '#redes'
+        }
       ];
       var currentMessage = 0;
 
       function showMessage(index) {
+        var item = messages[index];
         messageNode.classList.add('is-changing');
         window.setTimeout(function () {
-          messageNode.textContent = messages[index];
+          messageNode.textContent = item.text;
+          cta.querySelector('span').textContent = item.label;
+          cta.href = item.href;
+          if (item.copy) {
+            cta.setAttribute('data-copy', item.copy);
+          } else {
+            cta.removeAttribute('data-copy');
+          }
           messageNode.classList.remove('is-changing');
         }, 180);
       }
