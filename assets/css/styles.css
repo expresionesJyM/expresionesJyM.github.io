@@ -118,58 +118,12 @@
       box-shadow: 0 2px 6px rgba(61, 52, 24, 0.08);
     }
 
-    .social-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-    }
-
-    .social-mark--tiktok {
-      color: #111;
-      font-family: Arial, sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      text-shadow: -1.5px -1px #25F4EE, 1.5px 1px #FE2C55;
-    }
-
-    .social-mark--instagram {
-      position: relative;
-      width: 23px;
-      height: 23px;
-      border: 2.5px solid #D62976;
-      border-radius: 7px;
-    }
-
-    .social-mark--instagram::before {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: 10px;
-      height: 10px;
-      border: 2px solid #D62976;
-      border-radius: 50%;
-      content: "";
-    }
-
-    .social-mark--instagram::after {
-      position: absolute;
-      top: 3px;
-      right: 3px;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: #D62976;
-      content: "";
-    }
-
-    .social-mark--facebook {
-      align-items: flex-end;
-      color: #1877F2;
-      font-family: Arial, sans-serif;
-      font-size: 30px;
-      font-weight: 700;
-    }
+    .social-glyph { display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+    .social-glyph--tiktok { color: #111; font-size: 27px; font-weight: 800; text-shadow: 1px 1px #25f4ee, -1px -1px #fe2c55; }
+    .social-glyph--instagram { width: 20px; height: 20px; border: 2.5px solid #D62976; border-radius: 6px; position: relative; }
+    .social-glyph--instagram::before { content: ""; width: 7px; height: 7px; border: 2px solid #D62976; border-radius: 50%; }
+    .social-glyph--instagram::after { content: ""; position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #D62976; top: 3px; right: 3px; }
+    .social-glyph--facebook { color: #1877F2; font: 800 27px/1 Arial, sans-serif; }
 
     .social-icon:hover {
       background: var(--peach);
@@ -239,11 +193,10 @@
     }
 
     .btn-icon img {
-      display: block;
       width: 100%;
       height: 100%;
-      border-radius: inherit;
       object-fit: cover;
+      display: block;
     }
 
     .btn-icon--materials {
@@ -339,16 +292,14 @@
 
     .jashy-chat {
       position: relative;
-      width: 178px;
-      max-width: calc(100vw - 90px);
-      margin: 0 -6px 17px 0;
-      padding: 10px 11px 9px;
+      width: 218px;
+      max-width: calc(100vw - 102px);
+      margin: 0 -7px 20px 0;
+      padding: 12px 13px 11px;
       border: 1px solid rgba(201, 138, 43, .2);
-      border-radius: 15px 15px 5px 15px;
-      background: rgba(255, 253, 249, .78);
-      box-shadow: 0 5px 17px rgba(61, 36, 24, .11);
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(5px);
+      border-radius: 18px 18px 5px 18px;
+      background: rgba(255, 253, 249, .98);
+      box-shadow: 0 8px 26px rgba(61, 36, 24, .16);
       color: var(--ink);
       pointer-events: auto;
       transform-origin: bottom right;
@@ -359,12 +310,12 @@
       position: absolute;
       right: 20px;
       bottom: -8px;
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       content: "";
       border-right: 1px solid rgba(201, 138, 43, .2);
       border-bottom: 1px solid rgba(201, 138, 43, .2);
-      background: rgba(255, 253, 249, .78);
+      background: var(--card);
       transform: rotate(45deg);
     }
 
@@ -378,7 +329,7 @@
       place-items: center;
       border: 0;
       border-radius: 50%;
-      background: rgba(235, 224, 214, .78);
+      background: #FFF0E7;
       color: var(--muted);
       font-size: .7rem;
       cursor: pointer;
@@ -388,17 +339,16 @@
       display: block;
       margin: 0 22px 4px 0;
       color: var(--rose);
-      font-size: .58rem;
+      font-size: .66rem;
       font-weight: 800;
       letter-spacing: .04em;
       text-transform: uppercase;
     }
 
     .jashy-message {
-      min-height: 0;
-      margin: 0;
-      padding-right: 3px;
-      font-size: .69rem;
+      min-height: 34px;
+      margin: 0 0 9px;
+      font-size: .76rem;
       font-weight: 600;
       line-height: 1.4;
       transition: opacity .2s ease;
@@ -406,6 +356,26 @@
 
     .jashy-message.is-changing {
       opacity: .25;
+    }
+
+    .jashy-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 30px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: var(--rose);
+      color: #fff;
+      font-size: .69rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .15s ease, background .15s ease;
+    }
+
+    .jashy-cta:hover {
+      background: #C65F7E;
+      transform: translateY(-1px);
     }
 
     .jashy-widget.is-minimized .jashy-chat {
@@ -429,8 +399,8 @@
 
     @media (max-width: 360px) {
       .jashy-avatar-button { width: 64px; flex-basis: 64px; }
-      .jashy-chat { width: 168px; max-width: calc(100vw - 82px); padding: 9px 10px; }
-      .jashy-message { font-size: .66rem; }
+      .jashy-chat { width: 205px; max-width: calc(100vw - 90px); padding: 11px 12px; }
+      .jashy-message { font-size: .72rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {

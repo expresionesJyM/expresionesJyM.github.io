@@ -9,8 +9,8 @@
   <meta property="og:title" content="Expresiones" />
   <meta property="og:description"
     content="Rosas eternas hechas con amor. Ramos personalizados, materiales para emprender y comunidad de emprendedoras." />
-  <meta property="og:image" content="https://gardeneternaljym.github.io/logo2.png" />
-  <meta property="og:url" content="https://gardeneternaljym.github.io/" />
+  <meta property="og:image" content="https://expresionesjym.github.io/assets/images/logo2.png" />
+  <meta property="og:url" content="https://expresionesjym.github.io/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_PE" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,445 +18,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Nunito:wght@300;400;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    referrerpolicy="no-referrer" />
-  <style>
-    :root {
-      /* Paleta sacada de la foto real del puesto: rosa-durazno + dorado cálido + turquesa de acento */
-      --cream: #FFF6EE;
-      /* fondo, crema cálido como el mantel */
-      --card: #FFFDF9;
-      /* fondo de tarjetas y botones */
-      --ink: #3D2418;
-      /* texto principal, marrón oscuro del letrero cursivo */
-      --rose: #D9718F;
-      /* rosa-durazno de los envoltorios — acento fuerte */
-      --terracotta: #C98A2B;
-      /* dorado ámbar de la iluminación — acento secundario */
-      --coral: #E8A15E;
-      /* durazno dorado — bordes */
-      --peach: #FBE3D3;
-      /* durazno pálido — hover / iconos */
-      --muted: #9C6B5C;
-      /* texto secundario, marrón rosado */
-      --turquoise: #4FB3A9;
-      /* toque turquesa de contraste, visto en un par de envolturas */
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .page {
-      max-width: 420px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
-
-    .banner-wrap {
-      position: relative;
-      margin: -40px -20px 0;
-      width: calc(100% + 40px);
-    }
-
-    .banner-inner {
-      position: relative;
-      height: 170px;
-      overflow: hidden;
-    }
-
-    .banner-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: saturate(1.1) brightness(0.97);
-    }
-
-    /* Degradado suave y parejo hacia el color de fondo de la página */
-    .banner-fade {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom,
-          rgba(61, 52, 24, 0.08) 0%,
-          rgba(255, 251, 239, 0) 45%,
-          rgba(255, 251, 239, 0.55) 78%,
-          var(--cream) 100%);
-      pointer-events: none;
-    }
-
-    .logo-img {
-      width: 112px;
-      height: 112px;
-      border-radius: 28%;
-      object-fit: cover;
-      display: block;
-      border: 3px solid var(--card);
-      background: var(--card);
-      box-shadow: 0 10px 24px rgba(61, 52, 24, 0.18), 0 0 0 1px rgba(246, 199, 68, 0.18);
-
-      position: relative;
-      margin: -56px auto 0;
-      z-index: 2;
-    }
-
-    /* Redes sociales arriba, debajo del logo: solo ícono, sin texto */
-    .social-row-top {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      margin-top: 16px;
-      margin-bottom: 34px;
-    }
-
-    .social-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: var(--card);
-      border: 1.5px solid var(--coral);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: var(--ink);
-      transition: background .15s, transform .1s, box-shadow .15s;
-      box-shadow: 0 2px 6px rgba(61, 52, 24, 0.08);
-    }
-
-    .social-icon i {
-      font-size: 22px;
-      line-height: 1;
-    }
-
-    .social-icon .fa-tiktok {
-      color: #111;
-    }
-
-    .social-icon .fa-instagram {
-      color: #D62976;
-    }
-
-    .social-icon .fa-facebook-f {
-      color: #1877F2;
-    }
-
-    .social-icon:hover {
-      background: var(--peach);
-      box-shadow: 0 4px 10px rgba(61, 52, 24, 0.14);
-    }
-
-    .social-icon:active {
-      transform: scale(.95);
-    }
-
-    /* SECTIONS */
-    .section {
-      margin-bottom: 28px;
-    }
-
-    .section-label {
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 10px;
-    }
-
-    /* BUTTONS */
-    .btn {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      width: 100%;
-      padding: 14px 16px;
-      background: var(--card);
-      border: 1.5px solid var(--coral);
-      border-radius: 14px;
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--ink);
-      font-family: 'Nunito', sans-serif;
-      font-size: .88rem;
-      transition: background .15s, transform .15s, box-shadow .15s, border-color .15s;
-      margin-bottom: 8px;
-      box-shadow: 0 3px 10px rgba(61, 36, 24, .06);
-    }
-
-    .btn:hover {
-      background: var(--peach);
-      border-color: var(--rose);
-      box-shadow: 0 7px 18px rgba(61, 36, 24, .11);
-      transform: translateY(-1px);
-    }
-
-    .btn:active {
-      transform: scale(.98);
-    }
-
-    .btn-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
-      background: linear-gradient(145deg, #FFE8EE, #F8CAD6);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: inset 0 0 0 1px rgba(217, 113, 143, .14), 0 4px 10px rgba(217, 113, 143, .14);
-    }
-
-    .btn-icon i {
-      color: var(--rose);
-      font-size: 23px;
-      line-height: 1;
-      filter: drop-shadow(0 1px 1px rgba(61, 36, 24, .08));
-    }
-
-    .btn-icon--materials {
-      background: linear-gradient(145deg, #FFF3D9, #F8D9A8);
-      box-shadow: inset 0 0 0 1px rgba(201, 138, 43, .16), 0 4px 10px rgba(201, 138, 43, .13);
-    }
-
-    .btn-icon--materials i {
-      color: var(--terracotta);
-    }
-
-    .btn-icon--community {
-      background: linear-gradient(145deg, #E2F9EB, #C5F0D7);
-      box-shadow: inset 0 0 0 1px rgba(37, 211, 102, .16), 0 4px 10px rgba(37, 211, 102, .12);
-    }
-
-    .btn-icon--community i {
-      color: #128C4B;
-    }
-
-    .btn-text {
-      flex: 1;
-      text-align: left;
-    }
-
-    .btn-text strong {
-      display: block;
-      font-size: .86rem;
-      font-weight: 600;
-    }
-
-    .btn-text span {
-      display: block;
-      font-size: .72rem;
-      color: var(--muted);
-    }
-
-    .btn-arrow {
-      font-size: 1.1rem;
-      color: var(--rose);
-    }
-
-    /* TOAST: confirmación flotante tras copiar */
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 28px;
-      transform: translateX(-50%) translateY(20px);
-      background: var(--ink);
-      color: #FFF6EE;
-      padding: 12px 20px;
-      border-radius: 999px;
-      font-size: .8rem;
-      font-weight: 600;
-      text-align: center;
-      max-width: 90%;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .25s ease, transform .25s ease;
-      z-index: 999;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Asistente flotante de Jashy: compacto, accesible y fácil de minimizar */
-    .jashy-widget {
-      position: fixed;
-      right: max(12px, calc((100vw - 420px) / 2 + 12px));
-      bottom: max(14px, env(safe-area-inset-bottom));
-      z-index: 50;
-      display: flex;
-      align-items: flex-end;
-      max-width: calc(100vw - 24px);
-      pointer-events: none;
-    }
-
-    .jashy-avatar-button {
-      position: relative;
-      z-index: 2;
-      width: 74px;
-      flex: 0 0 74px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      pointer-events: auto;
-      animation: jashy-float 5s ease-in-out infinite;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .jashy-avatar-button img {
-      display: block;
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 4px 6px rgba(61, 36, 24, .16));
-    }
-
-    .jashy-chat {
-      position: relative;
-      width: 218px;
-      max-width: calc(100vw - 102px);
-      margin: 0 -7px 20px 0;
-      padding: 12px 13px 11px;
-      border: 1px solid rgba(201, 138, 43, .2);
-      border-radius: 18px 18px 5px 18px;
-      background: rgba(255, 253, 249, .98);
-      box-shadow: 0 8px 26px rgba(61, 36, 24, .16);
-      color: var(--ink);
-      pointer-events: auto;
-      transform-origin: bottom right;
-      animation: jashy-pop .35s ease-out both;
-    }
-
-    .jashy-chat::after {
-      position: absolute;
-      right: 20px;
-      bottom: -8px;
-      width: 14px;
-      height: 14px;
-      content: "";
-      border-right: 1px solid rgba(201, 138, 43, .2);
-      border-bottom: 1px solid rgba(201, 138, 43, .2);
-      background: var(--card);
-      transform: rotate(45deg);
-    }
-
-    .jashy-chat-close {
-      position: absolute;
-      top: 6px;
-      right: 7px;
-      display: grid;
-      width: 24px;
-      height: 24px;
-      place-items: center;
-      border: 0;
-      border-radius: 50%;
-      background: #FFF0E7;
-      color: var(--muted);
-      font-size: .7rem;
-      cursor: pointer;
-    }
-
-    .jashy-name {
-      display: block;
-      margin: 0 22px 4px 0;
-      color: var(--rose);
-      font-size: .66rem;
-      font-weight: 800;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-
-    .jashy-message {
-      min-height: 34px;
-      margin: 0 0 9px;
-      font-size: .76rem;
-      font-weight: 600;
-      line-height: 1.4;
-      transition: opacity .2s ease;
-    }
-
-    .jashy-message.is-changing {
-      opacity: .25;
-    }
-
-    .jashy-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      min-height: 30px;
-      padding: 6px 11px;
-      border-radius: 999px;
-      background: var(--rose);
-      color: #fff;
-      font-size: .69rem;
-      font-weight: 800;
-      text-decoration: none;
-      transition: transform .15s ease, background .15s ease;
-    }
-
-    .jashy-cta:hover {
-      background: #C65F7E;
-      transform: translateY(-1px);
-    }
-
-    .jashy-widget.is-minimized .jashy-chat {
-      display: none;
-    }
-
-    .jashy-widget.is-minimized .jashy-avatar-button {
-      width: 60px;
-      flex-basis: 60px;
-    }
-
-    @keyframes jashy-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
-    }
-
-    @keyframes jashy-pop {
-      from { opacity: 0; transform: scale(.94) translateY(5px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    @media (max-width: 360px) {
-      .jashy-avatar-button { width: 64px; flex-basis: 64px; }
-      .jashy-chat { width: 205px; max-width: calc(100vw - 90px); padding: 11px 12px; }
-      .jashy-message { font-size: .72rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .jashy-avatar-button, .jashy-chat { animation: none; }
-    }
-
-    /* FOOTER */
-    .footer {
-      text-align: center;
-      font-size: .68rem;
-      color: var(--muted);
-      margin-top: 32px;
-      line-height: 1.8;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
 <body>
@@ -466,24 +28,24 @@
     <header class="hero">
       <div class="banner-wrap">
         <div class="banner-inner">
-          <img class="banner-img" src="banner.png" alt="Banner Expresiones" />
+          <img class="banner-img" src="assets/images/banner.png" alt="Banner Expresiones" />
           <div class="banner-fade"></div>
         </div>
-        <img class="logo-img" src="logo2.png" alt="Expresiones" />
+        <img class="logo-img" src="assets/images/logo2.png" alt="Expresiones" />
       </div>
       <div class="social-row-top" id="redes">
         <a href="https://www.tiktok.com/@expresiones_eternas" target="_blank" rel="noopener noreferrer" class="social-icon"
           aria-label="TikTok" data-copy="https://www.tiktok.com/@expresiones_eternas">
-          <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+          <span class="social-glyph social-glyph--tiktok" aria-hidden="true">♪</span>
         </a>
         <a href="https://www.instagram.com/expreciones_eternas" target="_blank" rel="noopener noreferrer"
           class="social-icon" aria-label="Instagram" data-copy="https://www.instagram.com/expreciones_eternas">
-          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          <span class="social-glyph social-glyph--instagram" aria-hidden="true"></span>
         </a>
         <a href="https://www.facebook.com/share/1DPNxAcHdv/" target="_blank"
           rel="noopener noreferrer" class="social-icon" aria-label="Facebook"
           data-copy="https://www.facebook.com/share/1DPNxAcHdv/">
-          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          <span class="social-glyph social-glyph--facebook" aria-hidden="true">f</span>
         </a>
       </div>
 
@@ -494,7 +56,7 @@
         <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7" target="_blank" rel="noopener noreferrer" class="btn"
           data-copy="https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7">
           <div class="btn-icon" aria-hidden="true">
-            <i class="fa-solid fa-spa" aria-hidden="true"></i>
+            <img src="assets/images/ramitoicon.jpg" alt="" />
           </div>
           <div class="btn-text">
             <strong>Pedir mi ramo</strong>
@@ -510,7 +72,7 @@
         <a href="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7" target="_blank" rel="noopener noreferrer" class="btn"
           data-copy="https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7">
           <div class="btn-icon btn-icon--materials" aria-hidden="true">
-            <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
+            <img src="assets/images/materialicon.jpg" alt="" />
           </div>
           <div class="btn-text">
             <strong>Comprar materiales</strong>
@@ -521,7 +83,7 @@
         <a href="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr" target="_blank" rel="noopener noreferrer" class="btn"
           data-copy="https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr">
           <div class="btn-icon btn-icon--community" aria-hidden="true">
-            <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+            <img src="assets/images/comunidadicon.png" alt="" />
           </div>
           <div class="btn-text">
             <strong>Comunidad gratis</strong>
@@ -542,157 +104,19 @@
   <aside class="jashy-widget" id="jashyWidget" aria-label="Ayuda de Jashy">
     <div class="jashy-chat" id="jashyChat">
       <button class="jashy-chat-close" id="jashyClose" type="button" aria-label="Minimizar a Jashy">
-        <i class="fa-solid fa-minus" aria-hidden="true"></i>
+        <span aria-hidden="true">−</span>
       </button>
       <span class="jashy-name">Jashy · aquí para ayudarte</span>
       <p class="jashy-message" id="jashyMessage" aria-live="polite" aria-atomic="true">¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!</p>
       <a class="jashy-cta" id="jashyCta" href="#redes">
-        <span>Ver nuestros enlaces</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        <span>Ver nuestros enlaces</span><span aria-hidden="true">→</span>
       </a>
     </div>
     <button class="jashy-avatar-button" id="jashyAvatar" type="button" aria-label="Abrir los mensajes de Jashy" aria-expanded="true">
-      <img src="Image/jashy.png" alt="Jashy saludando" />
+      <img src="assets/images/jashy.png" alt="Jashy saludando" />
     </button>
   </aside>
-
-  <script>
-    (function () {
-      var ua = navigator.userAgent || navigator.vendor || window.opera || '';
-      var isInAppBrowser = /musical_ly|tiktok|bytedance|ttwebview|instagram|FBAN|FBAV/i.test(ua);
-
-      if (!isInAppBrowser) return;
-
-      var toast = document.getElementById('toast');
-      var toastTimer = null;
-
-      function showToast(msg) {
-        if (!toast) return;
-        toast.textContent = msg;
-        toast.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () {
-          toast.classList.remove('show');
-        }, 3800);
-      }
-
-      function copyText(text) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          return navigator.clipboard.writeText(text).catch(function () {
-            return copyTextFallback(text);
-          });
-        }
-        return copyTextFallback(text);
-      }
-
-      function copyTextFallback(text) {
-        var input = document.createElement('textarea');
-        input.value = text;
-        input.setAttribute('readonly', '');
-        input.style.position = 'fixed';
-        input.style.opacity = '0';
-        document.body.appendChild(input);
-        input.select();
-        var copied = false;
-        try {
-          copied = document.execCommand('copy');
-        } catch (error) {
-          copied = false;
-        }
-        input.remove();
-
-        if (copied) return Promise.resolve();
-        window.prompt('Copia este enlace:', text);
-        return Promise.resolve();
-      }
-
-      // Intercepta también el enlace de Jashy aunque su destino vaya cambiando.
-      document.addEventListener('click', function (e) {
-        var el = e.target.closest('[data-copy]');
-        if (!el) return;
-        e.preventDefault();
-        var text = el.getAttribute('data-copy');
-        copyText(text).then(function () {
-          showToast('🔗 ¡Enlace copiado! Pégalo en tu navegador para abrirlo');
-        }).catch(function () {
-          showToast('No se pudo copiar. Mantén presionado el enlace para copiarlo');
-        });
-      });
-    })();
-
-    (function () {
-      var widget = document.getElementById('jashyWidget');
-      var avatar = document.getElementById('jashyAvatar');
-      var close = document.getElementById('jashyClose');
-      var messageNode = document.getElementById('jashyMessage');
-      var cta = document.getElementById('jashyCta');
-      var messages = [
-        {
-          text: '¡Hola! Soy Jashy 🌷 ¡Bienvenidos a Expresiones!',
-          label: 'Ver nuestros enlaces', href: '#redes'
-        },
-        {
-          text: '¿Buscas un regalo especial? Te ayudamos a crear tu ramo 🌸',
-          label: 'Pedir mi ramo',
-          href: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7',
-          copy: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20pedir%20un%20ramo%20%F0%9F%8C%B7'
-        },
-        {
-          text: '¿Te gusta crear? Tenemos materiales para que empieces a emprender ✨',
-          label: 'Ver materiales',
-          href: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7',
-          copy: 'https://wa.me/51956744914?text=Hola%2C%20quiero%20comprar%20materiales%20%F0%9F%AA%B7'
-        },
-        {
-          text: 'Únete gratis a nuestra comunidad y aprendamos juntas 💚',
-          label: 'Unirme gratis',
-          href: 'https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr',
-          copy: 'https://chat.whatsapp.com/CMHPDhzzyfnKDMrn21aZUr'
-        },
-        {
-          text: 'Síguenos en nuestras redes para ver ramos, ideas y novedades 💐',
-          label: 'Ver redes', href: '#redes'
-        }
-      ];
-      var currentMessage = 0;
-
-      function showMessage(index) {
-        var item = messages[index];
-        messageNode.classList.add('is-changing');
-        window.setTimeout(function () {
-          messageNode.textContent = item.text;
-          cta.querySelector('span').textContent = item.label;
-          cta.href = item.href;
-          if (item.copy) {
-            cta.setAttribute('data-copy', item.copy);
-          } else {
-            cta.removeAttribute('data-copy');
-          }
-          messageNode.classList.remove('is-changing');
-        }, 180);
-      }
-
-      function showRandomMessage() {
-        var nextMessage;
-        do {
-          nextMessage = Math.floor(Math.random() * messages.length);
-        } while (messages.length > 1 && nextMessage === currentMessage);
-        currentMessage = nextMessage;
-        showMessage(currentMessage);
-      }
-
-      avatar.addEventListener('click', function () {
-        var minimized = widget.classList.toggle('is-minimized');
-        avatar.setAttribute('aria-expanded', String(!minimized));
-      });
-
-      close.addEventListener('click', function () {
-        widget.classList.add('is-minimized');
-        avatar.setAttribute('aria-expanded', 'false');
-      });
-
-      window.setInterval(showRandomMessage, 9000);
-    })();
-  </script>
+  <script src="assets/js/main.js" defer></script>
 
 </body>
 
